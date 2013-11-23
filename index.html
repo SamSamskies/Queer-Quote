@@ -2,13 +2,46 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="styles/app.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
+
     <title>Queer Quote</title>
   </head>
   <body>
     <div class='container'>
-      <header>Queer Quote</header>
+      <div class='jumbotron'>
+
+        <div class="page-header"><h1>Queer Quote</h1></div>
+
+        <div class="row">
+          <div id='image_display'></div>
+        </div>
+
+        <div id='form'>
+          <form id="img_form" class="form-control">
+            <label for="size">Size</label>
+            <input type="text" class="text" name="size" id="size" value="600x400" size="8">
+
+            <label for="bgColor">Background Color</label>
+            <input type="text" class="text" name="bgColor" id="bgColor" value="000" size="6" maxlength="6">
+
+            <label for="fgColor">Text Color</label>
+            <input type="text" class="text" name="fgColor" id="fgColor" value="fff" size="6" maxlength="6">
+
+            <label for="text">Text</label>
+            <input type="text" name="text" id="text" value="" size="30">
+
+            <button id="update">Update Image</button>
+
+          </form>
+        </div>
+      </div>
     </div>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
     <script src="http://codeorigin.jquery.com/jquery-2.0.3.js"></script>
     <script src='js/app.js'></script>
   </body>

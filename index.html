@@ -13,35 +13,8 @@
   </head>
   <body>
     <div class='container'>
-      <header>Queer Quotes</header>
 
-      <!-- Contains widget -->
-      <div id='widget_container'>
-
-        <!-- Tutorial -->
-        <div id='tuts_button'>
-          <button id="show">?</button>
-        </div>
-
-        <div id='tuts_container'>
-
-
-          <button id='hide'>Done</button>
-        </div>
-
-        <!-- Soundcloud -->
-        <div id='soundcloud'></div>
-
-        <!-- Quote -->
-        <div id='footnote'></div>
-
-        <!-- Links -->
-        <a class='full_transcript' href="">Full Transcript</a>
-        <a class='share'>Share on facebook</a>
-
-      </div>
-
-      <!-- Jumbotron div for displaying text and images -->
+      <!-- jumbotron div for displaying text and images -->
       <div class='jumbotron'>
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-dialog">
@@ -77,12 +50,33 @@
             </div><!-- /.modal-content -->
           </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
+
         <div class="page-header"><h1>Queer Quote</h1></div>
-          <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-          Get Image from Text
-          </button>
+
+        <!-- Contains widget -->
+        <div id='widget_container'>
+
+          <!-- Soundcloud -->
+          <div id='soundcloud'></div>
+
+          <!-- Quote -->
+          <div id='footnote'></div>
+
+          <!-- Links -->
+          <a class='full_transcript' href="">Full Transcript</a>
+          <a class='share'>Share on facebook</a>
+
+        </div>
+
+        <!-- Button to get text from transcript -->
+        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+        Get Image from Text
+        </button>
+
+      <!-- End of jumbotron -->
       </div>
 
+    <!-- End of container -->
     </div>
 
     <!-- Latest compiled and minified JavaScript -->

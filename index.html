@@ -8,8 +8,44 @@
   <body>
     <div class='container'>
       <header>Queer Quote</header>
+      
+      <div id='widget_container'>
+      
+        <!-- Tutorial -->
+        <div id='tuts_button'>
+          <button id="show">?</button>
+        </div>
+        
+        <div id='tuts_container'>
+          <button id='hide'>Done</button>
+        </div>
+        
+        <!-- Soundcloud -->
+        <div id='soundcloud'></div>
+
+        <!-- Quote -->
+        <div id='footnote'>
+        </div>
+        
+        <!-- Links -->
+      
+      </div>
+      
     </div>
     <script src="http://codeorigin.jquery.com/jquery-2.0.3.js"></script>
     <script src='js/app.js'></script>
+    
+    <!-- Show tutorial script -->
+    <script>
+    $( "#show" ).click(function() {
+      $( "#tuts_container" ).show( "fast" );
+    });
+ 
+    $( "#hide" ).click(function() {
+      $( "#tuts_container" ).hide( "fast" );
+    });
+    </script>
+  
+    
   </body>
 </html>

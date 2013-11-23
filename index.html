@@ -2,16 +2,25 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+<<<<<<< HEAD
+
+=======
+    <script src="http://codeorigin.jquery.com/jquery-2.0.3.js"></script>
+    <script src='js/app.js'></script>
+>>>>>>> be48ddc08f718dd58666b6e7a2355caaefffa4bb
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
 
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
     <title>Queer Quote</title>
   </head>
   <body>
     <div class='container'>
+<<<<<<< HEAD
       <header>Queer Quotes</header>
 
       <!-- Contains widget -->
@@ -40,30 +49,52 @@
 
       </div>
 
-      <div class="row">
-        <div id='image_display'></div>
-      </div>
+      <!-- Jumbotron div for displaying text and images -->
+=======
+>>>>>>> be48ddc08f718dd58666b6e7a2355caaefffa4bb
+      <div class='jumbotron'>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Edit Your Image</h4>
+              </div>
+              <div class="modal-body" id="image_display">
+              </div>
+              <div class="modal-footer">
+                <form id="img_form" class="form-inline" role="form">
+                  <div class="form-group">
 
-      <div id='form'>
-        <form id="img_form" class="form-control">
-          <label for="size">Size</label>
-          <input type="text" class="text" name="size" id="size" value="600x400" size="8">
+                    <label for="size">Size</label>
+                    <input type="text" name="size" id="size" value="600x400" size="8">
 
-          <label for="bgColor">Background Color</label>
-          <input type="text" class="text" name="bgColor" id="bgColor" value="000" size="6" maxlength="6">
+                    <label for="bgColor">Background</label>
+                    <input type="text" name="bgColor" id="bgColor" value="000" size="6" maxlength="6">
+                  </div>
+                  <div class="form-group">
+                    <label for="fgColor">Text Color</label>
+                    <input type="text" name="fgColor" id="fgColor" value="fff" size="6" maxlength="6">
 
-          <label for="fgColor">Text Color</label>
-          <input type="text" class="text" name="fgColor" id="fgColor" value="fff" size="6" maxlength="6">
+                    <label for="text">Text</label>
+                    <input type="text" name="text" id="text" value="">
+                  </div>
 
-          <label for="text">Text</label>
-          <input type="text" name="text" id="text" value="" size="30">
-
-          <button id="update">Update Image</button>
-
-        </form>
+                </form>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="update">Update Image</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <div class="page-header"><h1>Queer Quote</h1></div>
+          <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+          Get Image from Text
+          </button>
       </div>
 
     </div>
+<<<<<<< HEAD
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="http://codeorigin.jquery.com/jquery-2.0.3.js"></script>
@@ -90,5 +121,9 @@
       $('.banner').unslider();
     });
     </script>
+
+=======
+>>>>>>> be48ddc08f718dd58666b6e7a2355caaefffa4bb
   </body>
+
 </html>

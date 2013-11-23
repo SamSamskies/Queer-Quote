@@ -7,18 +7,59 @@
   </head>
   <body>
     <div class='container'>
-      <header>Queer Quote</header>
-      <div id="soundcloud"></div>
-      <div id="footnote"></div>
+      <header>Queer Quotes</header>
+
+      <!-- Contains widget -->
+      <div id='widget_container'>
+
+        <!-- Tutorial -->
+        <div id='tuts_button'>
+          <button id="show">?</button>
+        </div>
+
+        <div id='tuts_container'>
+
+
+          <button id='hide'>Done</button>
+        </div>
+
+        <!-- Soundcloud -->
+        <div id='soundcloud'></div>
+
+        <!-- Quote -->
+        <div id='footnote'></div>
+
+        <!-- Links -->
+        <a class='full_transcript' href="">Full Transcript</a>
+        <a class='share'>Share on facebook</a>
+
+      </div>
+
     </div>
+
+    <!-- Scripts -->
     <script src="http://codeorigin.jquery.com/jquery-2.0.3.js"></script>
     <script src="http://cdn.popcornjs.org/code/dist/popcorn-complete.js"></script>
     <script src='js/quote.js'></script>
     <script src='js/transcript.js'></script>
     <script src="js/player.js"></script>
     <script src="js/app.js"></script>
+    <!-- Tutorial -->
+    <script>
+    $( "#show" ).click(function() {
+      $( "#tuts_container" ).show( "fast" );
+    });
+
+    $( "#hide" ).click(function() {
+      $( "#tuts_container" ).hide( 1000 );
+    });
+    </script>
+
+    <script src="//unslider.com/unslider.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+      $('.banner').unslider();
+    });
+    </script>
   </body>
 </html>
-
-<!-- https://soundcloud.com/outloud-radio-1/a-trans-cendent-perspective
-http://new.outloudradio.org/sites/default/files/transcripts/A_Trans-cendent_Perspective.en_.srt -->

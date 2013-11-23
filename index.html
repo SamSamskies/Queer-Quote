@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
 
     <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" type="text/css" href="styles/app.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
 
     <!-- Optional theme -->
@@ -11,6 +12,7 @@
 
     <title>Queer Quote</title>
   </head>
+  
   <body>
     <div class='container'>
       <header>Queer Quotes</header>
@@ -18,26 +20,11 @@
       <!-- Contains widget -->
       <div id='widget_container'>
 
-        <!-- Tutorial -->
-        <div id='tuts_button'>
-          <button id="show">?</button>
-        </div>
-
-        <div id='tuts_container'>
-
-
-          <button id='hide'>Done</button>
-        </div>
-
         <!-- Soundcloud -->
         <div id='soundcloud'></div>
 
         <!-- Quote -->
         <div id='footnote'></div>
-
-        <!-- Links -->
-        <a class='full_transcript' href="">Full Transcript</a>
-        <a class='share'>Share on facebook</a>
 
       </div>
 
@@ -93,24 +80,7 @@
     <script src='js/transcript.js'></script>
     <script src="js/player.js"></script>
     <script src="js/app.js"></script>
-    <!-- Tutorial -->
-    <script>
-    $( "#show" ).click(function() {
-      $( "#tuts_container" ).show( "fast" );
-    });
-
-    $( "#hide" ).click(function() {
-      $( "#tuts_container" ).hide( 1000 );
-    });
-    </script>
-
-    <script src="//unslider.com/unslider.min.js"></script>
-    <script type="text/javascript">
-    $(function() {
-      $('.banner').unslider();
-    });
-    </script>
-
+   
   </body>
 
 </html>

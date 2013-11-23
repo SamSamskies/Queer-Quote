@@ -7,45 +7,60 @@
   </head>
   <body>
     <div class='container'>
-      <header>Queer Quote</header>
-      
+      <header>Queer Quotes</header>
+
+      <!-- Contains widget -->
       <div id='widget_container'>
-      
+
         <!-- Tutorial -->
         <div id='tuts_button'>
           <button id="show">?</button>
         </div>
         
         <div id='tuts_container'>
+          
+
           <button id='hide'>Done</button>
         </div>
-        
+
         <!-- Soundcloud -->
         <div id='soundcloud'></div>
 
         <!-- Quote -->
         <div id='footnote'>
+          <p>Let the future tell the truth, and evaluate each one according to his work and accomplishments. The present is theirs; the future, for which I have really worked, is mine.</p>
         </div>
-        
+
         <!-- Links -->
-      
+        <a class='full_transcript' href="">Full Transcript</a>
+        <a class='share'>Share on facebook</a>
+
       </div>
-      
+
     </div>
+    
+    <!-- Scripts -->
     <script src="http://codeorigin.jquery.com/jquery-2.0.3.js"></script>
     <script src='js/app.js'></script>
-    
-    <!-- Show tutorial script -->
+
+    <!-- Tutorial -->
     <script>
     $( "#show" ).click(function() {
       $( "#tuts_container" ).show( "fast" );
     });
  
     $( "#hide" ).click(function() {
-      $( "#tuts_container" ).hide( "fast" );
+      $( "#tuts_container" ).hide( 1000 );
     });
     </script>
-  
-    
+
+    <script src="//unslider.com/unslider.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+      $('.banner').unslider();
+    });
+    </script
+
+
   </body>
 </html>

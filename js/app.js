@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  Player.init( '#soundcloud', 'http://soundcloud.com/outloud-radio-1/a-trans-cendent-perspective' )
+  Player.init( '#soundcloud', 'http://soundcloud.com/outloud-radio-1/a-trans-cendent-perspective' );
 
   $("button").click(function(e) {
     e.preventDefault();
@@ -12,4 +12,4 @@ $(document).ready(function() {
     console.log(finalText);
     $("#image_display").html('<img src="http://dummyimage.com/' + size + '/' + bgColor + '/' + fgColor + '.png&text=' + finalText + '">');
   });
-})
+});

@@ -1,0 +1,9 @@
+.container {
+  margin: auto;
+  width: 960px;
+}
+
+.container header {
+  font-size: 3em;
+  text-align: center;
+}

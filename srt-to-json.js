@@ -1,6 +1,6 @@
 var regex = {
-index: //,
-start: //,
-end: //,
-text: //
+  index: /^\d*$/,
+  start: /^(\d{2}):(\d{2}):(\d{2}),(\d{3})/,
+  end: /(\d{2}):(\d{2}):(\d{2}),(\d{3})$/,
+  text: /^[a-zA-Z\[].*$/
 }

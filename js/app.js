@@ -1,5 +1,15 @@
 $(document).ready(function() {
-  Player.init( '#soundcloud', 'http://soundcloud.com/outloud-radio-1/a-trans-cendent-perspective' );
+
+  // Update these 2 urls to change what podcast gets loaded on the page
+  var soundcloudUrl = 'http://soundcloud.com/outloud-radio-1/a-trans-cendent-perspective'
+  var srtUrl = 'http://srt2json.herokuapp.com/?url=http://new.outloudradio.org/sites/default/files/transcripts/A_Trans-cendent_Perspective.en_.srt'
+
+  Player.init({
+    container: '#soundcloud',
+    footnoteTarget: 'footnote',
+    soundcloudUrl: soundcloudUrl,
+    srtUrl: srtUrl
+  });
   App.initListeners();
 });
 
@@ -17,5 +27,11 @@ var App = {
       e.preventDefault();
       drawText($(".quote:visible").html());
     });
+
+    $("#soundcloud").bind('DOMSubtreeModified', App.hideSpinner);
+  },
+
+  hideSpinner: function() {
+    $('.spinner').fadeOut()
   }
 };

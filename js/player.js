@@ -1,21 +1,21 @@
 var Player = {
 
-  init: function(container, url) {
-    this.pop = Popcorn.soundcloud( container, url );
+  init: function(options) {
+    this.pop = Popcorn.soundcloud( options.container, options.soundcloudUrl);
     var self = this
-    $.getJSON("http://srt2json.herokuapp.com/?url=http://new.outloudradio.org/sites/default/files/transcripts/A_Trans-cendent_Perspective.en_.srt", function(response){
+    $.getJSON(options.srtUrl, function(response){
       self.transcript = new Transcript(response)
-      self.generateTranscripts()
+      self.generateTranscripts(options.footnoteTarget)
     })
   },
 
-  generateTranscripts: function() {
+  generateTranscripts: function(footnoteTarget) {
     $.each(Player.transcript.quotes, function(index, quote) {
       Player.pop.footnote( {
         start: quote.start,
         end: quote.end,
         text: quote.text,
-        target: 'footnote'
+        target: footnoteTarget
       })
     })
   }

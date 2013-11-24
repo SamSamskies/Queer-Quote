@@ -2,6 +2,10 @@ body {
 	background-color: #000066;
 }
 
+.spinner {
+  margin-left: 175px;
+}
+
 .container {
 	max-width: 600px;
 }

@@ -5,11 +5,11 @@ var Player = {
     var self = this
     $.getJSON(options.srtUrl, function(response){
       self.transcript = new Transcript(response)
-      self.generateTranscripts(options.footnoteTarget)
+      self.generateFootnotes(options.footnoteTarget)
     })
   },
 
-  generateTranscripts: function(footnoteTarget) {
+  generateFootnotes: function(footnoteTarget) {
     $.each(Player.transcript.quotes, function(index, quote) {
       if (index === 0){
         quote.start += .0001 // so that the first subtitle does not appear until player starts

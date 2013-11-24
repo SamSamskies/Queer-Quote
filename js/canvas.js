@@ -10,6 +10,8 @@ var Canvas = {
     this.ctx.fillStyle = $("#bgColor").val();
     this.ctx.fillRect(0,0,500,400);
     this.ctx.fillStyle = $("#fgColor").val();
+    this.ctx.font = '10pt Arial'
+    this.ctx.fillText('outloudradio.org', 380, 390);
     this.ctx.font = "bold 22pt Berkshire Swash";
   },
 

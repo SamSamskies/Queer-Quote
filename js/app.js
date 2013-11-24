@@ -37,6 +37,7 @@ var App = {
       Canvas.ctx.fillRect(0,0,500,400);
       Canvas.ctx.fillStyle = $("#fgColor").val();
       Canvas.wrapText($(".quote:visible").html());
+      Canvas.renderWatermark();
     });
 
     $("#fgColor").change(function() {

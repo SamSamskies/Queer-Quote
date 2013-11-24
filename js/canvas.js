@@ -4,14 +4,15 @@ var Canvas = {
     this.can = document.getElementById("can");
     this.ctx = this.can.getContext("2d");
     this.maxWidth = 460;
-    this.lineHeight = 40;
+    this.lineHeight = 42;
     this.x = (this.can.width - this.maxWidth) / 2;
     this.y = (this.can.height /2);
     this.setBgColor();
     this.ctx.fillStyle = $("#fgColor").val();
     // Add variable to change font size based on y
     this.renderWatermark();
-    this.ctx.font = "bold 20pt Berkshire Swash";
+    this.default_font = 38;
+    this.ctx.font = "bold " + this.default_font +"pt Berkshire Swash";
   },
 
   renderWatermark: function() {
@@ -27,22 +28,39 @@ var Canvas = {
 
   // Add x variable change to this function
   calcYposition: function(quote) {
+    // var dynamic_font = this.dynamic_font
+    var words = quote.split(' ');
     var y = this.y;
     var line = '';
-    for (var i = 0; i < quote.length; i++) {
-      var testLine = line + quote[i];
+    for (var i = 0; i < words.length; i++) {
+      var testLine = line + words[i] + ' ';
       var metrics = this.ctx.measureText(testLine);
       var testWidth = metrics.width;
       if (testWidth > this.maxWidth && i > 0) {
         // console.log(y);
-        line = quote[i];
-        y -= this.lineHeight /2;
+        line = words[i] + ' ';
+        this.updateLineHeight(1);
+        this.updateFontSize(2);
+        if ((y - this.lineHeight/2) > 40) {
+          y -= this.lineHeight /2;
+        } else {
+          return y;
+        }
       } else {
         line = testLine;
       }
     }
     return y;
   },
+
+  updateLineHeight: function(line_decrement) {
+    this.lineHeight -= line_decrement;
+  },
+
+  updateFontSize: function(font_decrement) {
+    this.default_font -= font_decrement;
+    this.ctx.font = "bold " + this.default_font  +"pt Berkshire Swash";
+},
 
   wrapText: function(quote) {
     var words = quote.split(' ');
@@ -69,4 +87,4 @@ var Canvas = {
   clear: function() {
     this.ctx.clearRect(0, 0, this.can.width, this.can.height);
   }
-}
+};

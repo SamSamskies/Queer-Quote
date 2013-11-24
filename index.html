@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+  
   <head>
     <meta charset="utf-8" />
 
@@ -9,18 +10,30 @@
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
-
+    
     <title>Queer Quote</title>
+
   </head>
 
   <body>
+
     <div class='container'>
-      <div class='jumbotron'>
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+    <!-- Header -->
+    <div class="header">
+        <ul class="nav nav-pills pull-right">
+        </ul>
+        <h3 class="text-muted">Queer Quote for<img id="outloud_logo" src="images/logo.jpg"></h3>
+      </div>
+
+    <div id="widget_container" class='jumbotron'>
+  
+          <!-- Share Modal -->
+          <div id="share_modal" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">Edit Your Image</h4>
               </div>
               <div class="modal-body" id="image_display" style="text-align:center;">
@@ -47,35 +60,32 @@
                 </form>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" id="update">Update Image</button>
-              </div>
-            </div><!-- /.modal-content -->
-          </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
 
-        <div class="page-header"><h1>Queer Quote</h1></div>
-
-        <!-- Contains widget -->
-        <div id='widget_container'>
-
+        <!-- Widget -->
           <!-- Soundcloud -->
           <div id='soundcloud'></div>
 
           <!-- Quote -->
           <div id='footnote'></div>
 
-          <!-- Links -->
-          <a class='full_transcript' href="">Full Transcript</a>
-          <a class='share'>Share on facebook</a>
+        <!-- Buttons -->
+        <div id="button_wrapper">
+
+          <button id="share_button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#share_modal">Share quote</button>
 
         </div>
 
-        <!-- Button to get text from transcript -->
-        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-        Get Image from Text
-        </button>
-
       <!-- End of jumbotron -->
       </div>
+
+      <!-- Footer -->
+        <div class='footer'>
+          <p>Dream Team 2013</p>
+        </div>
 
     <!-- End of container -->
     </div>
@@ -88,11 +98,7 @@
     <script src='js/transcript.js'></script>
     <script src="js/player.js"></script>
     <script src="js/app.js"></script>
-    <script type="text/javascript" src="js/canvas.js"></script>
     <script type="text/javascript" src="jscolor/jscolor.js"></script>
-    <script type="text/javascript" src="http://www.nihilogic.dk/labs/canvas2image/canvas2image.js"></script>
-    <script type="text/javascript" src="http://www.nihilogic.dk/labs/canvas2image/base64.js"></script>
-
 
   </body>
 

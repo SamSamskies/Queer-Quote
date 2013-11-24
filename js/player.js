@@ -11,6 +11,9 @@ var Player = {
 
   generateTranscripts: function() {
     $.each(Player.transcript.quotes, function(index, quote) {
+      if (index === 0){
+        quote.start += .0001 // so that the first subtitle does not appear until player starts
+      }
       Player.pop.footnote( {
         start: quote.start,
         end: quote.end,

@@ -18,7 +18,7 @@ var Canvas = {
   renderWatermark: function() {
     this.ctx.font = '10pt Arial';
     this.ctx.fillText('outloudradio.org', 380, 390);
-    this.ctx.font = "bold 22pt Berkshire Swash";
+    this.ctx.font = "bold " + this.default_font + "pt Berkshire Swash";
   },
 
   setBgColor: function() {
@@ -34,6 +34,11 @@ var Canvas = {
     first_word = first_word.split('');
     if (first_word[first_word.length - 1] == ':') {
       words = words.slice(1, words.length);
+      words[0] = '"' + words[0];
+      words[words.length-1] = words[words.length-1] + '"';
+    } else {
+      words[0] = '"' + words[0];
+      words[words.length-1] = words[words.length-1] + '"';
     }
 
     var y = this.y;
@@ -70,15 +75,20 @@ var Canvas = {
 },
 
   wrapText: function(quote) {
+
     var words = quote.split(' ');
-    // console.log(words);
     var first_word = words[0];
     first_word = first_word.split('');
     if (first_word[first_word.length - 1] == ':') {
       words = words.slice(1, words.length);
+      words[0] = '"' + words[0];
+      words[words.length-1] = words[words.length-1] + '"';
+    } else {
+      words[0] = '"' + words[0];
+      words[words.length-1] = words[words.length-1] + '"';
     }
-    var line = '';
 
+    var line = '';
     var y = this.calcYposition(quote);
 
     for(var n = 0; n < words.length; n++) {

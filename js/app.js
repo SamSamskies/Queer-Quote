@@ -16,7 +16,9 @@ var App = {
 
     $("#share_button").click(function(e) {
       e.preventDefault();
-      drawText($(".quote:visible").html());
+      text = $(".quote:visible").html();
+      getY();
+      wrapText(ctx, text, x, y, maxWidth, lineHeight);
     });
   }
 };

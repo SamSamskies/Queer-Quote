@@ -1,55 +1,53 @@
-$("body").ready(init());
+var Canvas = {
 
-var can, ctx;
-var maxWidth = 375;
-var lineHeight = 25;
-var x = (can.width - maxWidth) / 2;
-var y = (can.height /2) + (lineHeight /2);
-var text = $(".quote:visible").html();
+  init: function() {
+    this.can = document.getElementById("can");
+    this.ctx = this.can.getContext("2d");
+    this.maxWidth = 375;
+    this.lineHeight = 25;
+    this.x = (this.can.width - this.maxWidth) / 2;
+    this.y = (this.can.height /2) + (this.lineHeight /2);
+    this.ctx.fillStyle = $("#bgColor").val();
+    this.ctx.fillRect(0,0,500,400);
+    this.ctx.fillStyle = $("#fgColor").val();
+    this.ctx.font = "16pt Calibri";
+  },
 
-
-function init() {
-  can = document.getElementById("can");
-  ctx = can.getContext("2d");
-}
-
-ctx.fillStyle = $("#bgColor").val();
-ctx.fillRect(0,0,500,400);
-ctx.fillStyle = $("#fgColor").val();
-ctx.font = "16pt Calibri";
-
-function getY() {
-  var line = '';
-  for (var i = 0; i < text.length; i++) {
-    var testLine = line + text[i];
-    var metrics = ctx.measureText(testLine);
-    var testWidth = metrics.width;
-    if (testWidth > maxWidth && i > 0) {
-            // console.log(y);
-            line = text[i];
-            y -= lineHeight;
-          } else {
-            line = testLine;
-          }
+  repositionY: function(quote) {
+    var line = '';
+    for (var i = 0; i < quote.length; i++) {
+      var testLine = line + quote[i];
+      var metrics = this.ctx.measureText(testLine);
+      var testWidth = metrics.width;
+      if (testWidth > this.maxWidth && i > 0) {
+        // console.log(y);
+        line = quote[i];
+        y -= lineHeight;
+      } else {
+        line = testLine;
       }
-}
-
-function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
-  var words = text.split(' ');
-  var line = '';
-
-  for(var n = 0; n < words.length; n++) {
-    var testLine = line + words[n] + ' ';
-    var metrics = ctx.measureText(testLine);
-    var testWidth = metrics.width;
-    if (testWidth > maxWidth && n > 0) {
-      ctx.fillText(line, x, y);
-      line = words[n] + ' ';
-      y += lineHeight;
     }
-    else {
-      line = testLine;
+  },
+
+  wrapText: function(quote) {
+    var words = quote.split(' ');
+    var line = '';
+
+    this.repositionY(quote)
+
+    for(var n = 0; n < words.length; n++) {
+      var testLine = line + words[n] + ' ';
+      var metrics = this.ctx.measureText(testLine);
+      var testWidth = metrics.width;
+      if (testWidth > this.maxWidth && n > 0) {
+        ctx.fillText(line, this.x, this.y);
+        line = words[n] + ' ';
+        this.y += lineHeight;
+      }
+      else {
+        line = testLine;
+      }
     }
+    this.ctx.fillText(line, this.x, this.y);
   }
-  ctx.fillText(line, x, y);
 }

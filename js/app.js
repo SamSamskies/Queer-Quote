@@ -1,11 +1,12 @@
 $(document).ready(function() {
+  App.initListeners();
   Player.init({
     container: App.soundcloudContainerId,
     footnoteTarget: App.footnoteTarget,
     soundcloudUrl: App.soundcloudUrl,
     srtUrl: App.srtApiEndpoint + App.srtUrl
   });
-  App.initListeners();
+  Canvas.init()
 });
 
 
@@ -24,12 +25,10 @@ var App = {
     $("#share_button").click(function(e) {
       e.preventDefault();
 
-      text = $(".quote:visible")
-      text = (text.length > 0) ? text.html() : 'Play the podcast. :)'
+      quote = $(".quote:visible")
+      quote = (quote.length > 0) ? quote.html() : 'Play the podcast. :)'
 
-      getY();
-      wrapText(ctx, text, x, y, maxWidth, lineHeight);
-
+      Canvas.wrapText(quote);
       Player.pop.pause()
     });
 

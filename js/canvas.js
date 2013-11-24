@@ -10,7 +10,7 @@ var Canvas = {
     this.ctx.fillStyle = $("#bgColor").val();
     this.ctx.fillRect(0,0,500,400);
     this.ctx.fillStyle = $("#fgColor").val();
-    this.ctx.font = "16pt Calibri";
+    this.ctx.font = "18pt Calibri";
   },
 
   repositionY: function(quote) {
@@ -22,7 +22,7 @@ var Canvas = {
       if (testWidth > this.maxWidth && i > 0) {
         // console.log(y);
         line = quote[i];
-        y -= lineHeight;
+        this.y -= this.lineHeight;
       } else {
         line = testLine;
       }
@@ -40,9 +40,9 @@ var Canvas = {
       var metrics = this.ctx.measureText(testLine);
       var testWidth = metrics.width;
       if (testWidth > this.maxWidth && n > 0) {
-        ctx.fillText(line, this.x, this.y);
+        this.ctx.fillText(line, this.x, this.y);
         line = words[n] + ' ';
-        this.y += lineHeight;
+        this.y += this.lineHeight;
       }
       else {
         line = testLine;

@@ -1,45 +1,73 @@
-.container header {
-  font-size: 3em;
-  text-align: center;
-  margin-bottom: 30px;
+body {
+	background-color: #000066;
 }
 
-/* Inline */
+.container {
+	max-width: 600px;
+}
+
+/* Header */
+
+.header h3 {
+	font-size: 1.3em;
+}
+
+#outloud_logo {
+	height: 30px;
+	margin-left: 10px
+}
+
+/* Widget */
 
 #widget_container {
-/*	width: 395px;
 	margin: 0 auto;
-	padding: 15px 20px;
-	background: #222;*/
+	max-width: 500px;
+	padding: 30px;
+	margin-top: 30px;
+	margin-bottom: 30px;
 }
 
-/* Tutorial */
-#tutorial_button {
-
-}
-
-#tuts_container {
+#widget_wrapper {
+	overflow: auto;
 	width: 100%;
-	height: 300px;
-	background: #666;
-	display: none;
 }
 
-/* Soundcloud */
+	/* Soundcloud */
 
-#soundcloud {
-	width: 100%;
-	margin: 0 auto;
-	background: #333;
-	height: 100px;
+	#soundcloud {
+		margin: 0 auto;
+		margin-bottom: 10px;
+		height: 100px;
+	}
+
+	/* Quote */
+
+	#footnote {
+		width: 100%;
+		min-height: 60px;
+		margin: 0 auto;
+/*		background: #888;
+*/		font-size: 1.2em;
+		line-height: 1.1em;
+		text-align: center;
+		margin-bottom: 8px;
+	}
+
+	/* Buttons, Links, Settings, Share*/
+
+	#button_wrapper {
+		overflow: auto;
+	}
+
+	#share_button {
+		float: right;
+	}
+
+/* Footer */
+.footer {
+  padding-top: 20px;
+  color: #777;
 }
 
-/* Quote */
+/* Modals */
 
-#footnote {
-	width: 100%;
-	margin: 20px 0px auto;
-	background: #444;
-}
-
-/* Links */

@@ -1,14 +1,21 @@
-Queer-Quote
-===========
+##Queer-Quote
+A widget that syncs outLoud Radio's podcasts with a transcript of their show. 
 
-A widget that syncs Out Loud Radio's podcasts with a transcript of their show. 
+Quotes can then be converted into a customizable image by the user.
 
-Quotes from the transcript can be converted into customizable image by the user.
+[Demo it here](http://samsamskies.github.io/Queer-Quote/)
 
-Demo it here: [Queer Quote](http://samsamskies.github.io/Queer-Quote/)
+####Technologies:
+* SoundCloud
+* Popcorn.js
+* .srt transcript files & a custom [srt to json](https://github.com/nathanallen/srt-to-json-api/) converter
+* Canvas2Image.js
+* JSColor.js
+* Bootstrap
+* jQuery
 
-
-In development run:
+####Development:
+In development, run a local server, for instance:
 
 ```
 python -m SimpleHTTPServer

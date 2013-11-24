@@ -6,7 +6,7 @@ $(document).ready(function() {
 
 var App = {
   initListeners: function() {
-    $("button").click(function(e) {
+    $("#update").click(function(e) {
       e.preventDefault();
       console.log(bgColor);
       var size = $("#size").val(),
@@ -15,7 +15,8 @@ var App = {
       originalText = $("#text").val(),
       finalText = originalText.split(' ').join('+');
       console.log(finalText);
-      $("#image_display").html('<img src="http://dummyimage.com/' + size + '/' + bgColor + '/' + fgColor + '.png&text=' + finalText + '">');
+      drawText();
+      // $("#image_display").html('<img src="http://dummyimage.com/' + size + '/' + bgColor + '/' + fgColor + '.png&text=' + finalText + '">');
     });
   }
 }

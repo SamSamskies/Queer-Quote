@@ -23,8 +23,9 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">Edit Your Image</h4>
               </div>
-              <div class="modal-body" id="image_display">
-              </div>
+              <div class="modal-body" id="image_display" style="text-align:center;">
+                <canvas width="500" height="400" style="border:1px solid black" id="can"></canvas>
+                </div>
               <div class="modal-footer">
                 <form id="img_form" class="form-inline" role="form">
                   <div class="form-group">
@@ -87,7 +88,11 @@
     <script src='js/transcript.js'></script>
     <script src="js/player.js"></script>
     <script src="js/app.js"></script>
+    <script type="text/javascript" src="js/canvas.js"></script>
     <script type="text/javascript" src="jscolor/jscolor.js"></script>
+    <script type="text/javascript" src="http://www.nihilogic.dk/labs/canvas2image/canvas2image.js"></script>
+    <script type="text/javascript" src="http://www.nihilogic.dk/labs/canvas2image/base64.js"></script>
+
 
   </body>
 

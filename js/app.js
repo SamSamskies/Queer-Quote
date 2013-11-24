@@ -13,9 +13,9 @@ var App = {
       e.preventDefault()
     });
 
-    $("#update").click(function(e) {
+    $("#share_button").click(function(e) {
       e.preventDefault();
-      drawText();
+      drawText($(".quote:visible").html());
     });
   }
 };

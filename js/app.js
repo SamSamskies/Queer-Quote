@@ -20,6 +20,7 @@ var App = {
     $("#share_button").click(function(e) {
       e.preventDefault();
       drawText($(".quote:visible").html());
+      Player.pop.pause()
     });
 
     $("#soundcloud").on('DOMSubtreeModified', function() {
@@ -31,9 +32,9 @@ var App = {
       window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(u));
     })
 
-    // $('#footnote').on('DOMSubtreeModified', 'div:visible', function() {
-    //   console.log('skjdsfkdj')
-    // })
+    $('#footnote').on('DOMSubtreeModified', function() {
+      console.log('skjdsfkdj')
+    })
     // $('body').on('click', 'iframe', function(e) { console.log('sdlkfj')});
   }
 };

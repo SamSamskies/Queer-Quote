@@ -34,6 +34,11 @@ var Canvas = {
     first_word = first_word.split('');
     if (first_word[first_word.length - 1] == ':') {
       words = words.slice(1, words.length);
+      words[0] = '"' + words[0];
+      words[words.length-1] = words[words.length-1] + '"';
+    } else {
+      words[0] = '"' + words[0];
+      words[words.length-1] = words[words.length-1] + '"';
     }
 
     var y = this.y;

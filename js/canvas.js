@@ -33,7 +33,7 @@ var Canvas = {
     var first_word = words[0];
     first_word = first_word.split('');
     if (first_word[first_word.length - 1] == ':') {
-      words = words.slice(1, words.length-1);
+      words = words.slice(1, words.length);
     }
 
     var y = this.y;
@@ -75,7 +75,7 @@ var Canvas = {
     var first_word = words[0];
     first_word = first_word.split('');
     if (first_word[first_word.length - 1] == ':') {
-      words = words.slice(1, words.length-1);
+      words = words.slice(1, words.length);
     }
     var line = '';
 

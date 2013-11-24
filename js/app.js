@@ -51,8 +51,7 @@ var App = {
     });
 
     $('button#share').on('click', function() {
-      u = 'http://www.catster.com/files/original.jpg'
-      window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(u));
+      Canvas2Image.saveAsPNG($("#can")[0]);
     })
 
     $('#share_modal').on('hidden.bs.modal', function () {

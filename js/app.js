@@ -31,7 +31,7 @@ var App = {
     $.each(stories, function(i,story){        
       var title = story['node_title']
 
-      storyData = {}
+      var storyData = {}
       storyData.srt = story['Transcript File']
       storyData.permalink_id = title.replace(/\'/g,"").replace(/ /g,"-").toLowerCase()
       App.moreStories << storyData

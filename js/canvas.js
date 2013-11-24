@@ -3,10 +3,10 @@ var Canvas = {
   init: function() {
     this.can = document.getElementById("can");
     this.ctx = this.can.getContext("2d");
-    this.maxWidth = 375;
+    this.maxWidth = 460;
     this.lineHeight = 40;
     this.x = (this.can.width - this.maxWidth) / 2;
-    this.y = (this.can.height /2) + (this.lineHeight /2);
+    this.y = (this.can.height /2);
     this.setBgColor();
     this.ctx.fillStyle = $("#fgColor").val();
     // Add variable to change font size based on y
@@ -36,7 +36,7 @@ var Canvas = {
       if (testWidth > this.maxWidth && i > 0) {
         // console.log(y);
         line = quote[i];
-        y -= this.lineHeight;
+        y -= this.lineHeight /2;
       } else {
         line = testLine;
       }

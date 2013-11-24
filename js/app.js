@@ -19,7 +19,11 @@ var App = {
 
     $("#share_button").click(function(e) {
       e.preventDefault();
-      drawText($(".quote:visible").html());
+
+      quote = $(".quote:visible")
+      quote = (quote.length > 0) ? quote.html() : 'Play the podcast. :)'
+
+      drawText(quote);
       Player.pop.pause()
     });
 

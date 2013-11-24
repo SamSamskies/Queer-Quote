@@ -24,7 +24,6 @@ function getY() {
     var testLine = line + text[i];
     var metrics = ctx.measureText(testLine);
     var testWidth = metrics.width;
-    console.log('test width', testWidth);
     if (testWidth > maxWidth && i > 0) {
             // console.log(y);
             line = text[i];

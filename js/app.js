@@ -32,6 +32,18 @@ var App = {
       Player.pop.pause()
     });
 
+    $("#bgColor").change(function() {
+      Canvas.ctx.fillStyle = $("#bgColor").val();
+      Canvas.ctx.fillRect(0,0,500,400);
+      Canvas.ctx.fillStyle = $("#fgColor").val();
+      Canvas.wrapText($(".quote:visible").html());
+    });
+
+    $("#fgColor").change(function() {
+      Canvas.ctx.fillStyle = $("#fgColor").val();
+      Canvas.wrapText($(".quote:visible").html());
+    });
+
     $("#soundcloud").on('DOMSubtreeModified', function() {
       $('.spinner').fadeOut()
 

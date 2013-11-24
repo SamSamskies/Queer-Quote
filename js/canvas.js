@@ -7,13 +7,20 @@ var Canvas = {
     this.lineHeight = 40;
     this.x = (this.can.width - this.maxWidth) / 2;
     this.y = (this.can.height /2) + (this.lineHeight /2);
-    this.ctx.fillStyle = $("#bgColor").val();
-    this.ctx.fillRect(0,0,500,400);
+    this.setBgColor();
     this.ctx.fillStyle = $("#fgColor").val();
+    // Add variable to change font size based on y
     this.ctx.font = "bold 22pt Berkshire Swash";
   },
 
-  repositionY: function(quote) {
+  setBgColor: function() {
+    this.ctx.fillStyle = $("#bgColor").val();
+    this.ctx.fillRect(0,0,500,400);
+  },
+
+  // Add x variable change to this function
+  calcYposition: function(quote) {
+    var y = this.y;
     var line = '';
     for (var i = 0; i < quote.length; i++) {
       var testLine = line + quote[i];
@@ -22,33 +29,34 @@ var Canvas = {
       if (testWidth > this.maxWidth && i > 0) {
         // console.log(y);
         line = quote[i];
-        this.y -= this.lineHeight;
+        y -= this.lineHeight;
       } else {
         line = testLine;
       }
     }
+    return y;
   },
 
   wrapText: function(quote) {
     var words = quote.split(' ');
     var line = '';
 
-    this.repositionY(quote)
+    var y = this.calcYposition(quote)
 
     for(var n = 0; n < words.length; n++) {
       var testLine = line + words[n] + ' ';
       var metrics = this.ctx.measureText(testLine);
       var testWidth = metrics.width;
       if (testWidth > this.maxWidth && n > 0) {
-        this.ctx.fillText(line, this.x, this.y);
+        this.ctx.fillText(line, this.x, y);
         line = words[n] + ' ';
-        this.y += this.lineHeight;
+        y += this.lineHeight;
       }
       else {
         line = testLine;
       }
     }
-    this.ctx.fillText(line, this.x, this.y);
+    this.ctx.fillText(line, this.x, y);
   },
 
   clear: function() {

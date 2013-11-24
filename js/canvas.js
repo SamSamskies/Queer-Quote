@@ -11,7 +11,7 @@ var Canvas = {
     this.ctx.fillStyle = $("#fgColor").val();
     // Add variable to change font size based on y
     this.renderWatermark();
-    this.ctx.font = "bold 22pt Berkshire Swash";
+    this.ctx.font = "bold 20pt Berkshire Swash";
   },
 
   renderWatermark: function() {
@@ -48,7 +48,7 @@ var Canvas = {
     var words = quote.split(' ');
     var line = '';
 
-    var y = this.calcYposition(quote)
+    var y = this.calcYposition(quote);
 
     for(var n = 0; n < words.length; n++) {
       var testLine = line + words[n] + ' ';

@@ -6,6 +6,7 @@ $(document).ready(function() {
     srtUrl: App.srtApiEndpoint + App.srtUrl
   });
   Canvas.init()
+  App.getMoreStories();
   App.initListeners();
 });
 
@@ -19,6 +20,29 @@ var App = {
   soundcloudContainerId: '#soundcloud',
   footnoteTarget: 'footnote',
   srtApiEndpoint: 'http://srt2json.herokuapp.com/?url=',
+  moreStories: [],
+
+  getMoreStories: function() {
+    var outloudStoriesProxy = "http://srt2json.herokuapp.com/outloud-stories"
+    $.getJSON(outloudStoriesProxy, function(stories){App.saveStories(stories)})
+  },
+
+  saveStories: function(stories){
+    $.each(stories, function(i,story){        
+      var title = story['node_title']
+
+      storyData = {}
+      storyData.srt = story['Transcript File']
+      storyData.permalink_id = title.replace(/\'/g,"").replace(/ /g,"-").toLowerCase()
+      App.moreStories << storyData
+      App.insertStoryLink(i, title)
+    })
+  }, 
+
+  insertStoryLink: function(i, title){
+    var storyLink = "<a class='story' data-id='" + i + "' href=#>" + title + "</a>"
+    document.querySelector('body').innerHTML += storyLink
+  },
 
   initListeners: function() {
 

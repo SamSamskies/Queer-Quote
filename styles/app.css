@@ -12,6 +12,10 @@ body {
 	font-size: 1.3em;
 }
 
+.footer p {
+  text-align: center;
+}
+
 #outloud_logo {
 	height: 30px;
 	margin-left: 10px

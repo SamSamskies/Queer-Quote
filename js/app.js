@@ -36,9 +36,8 @@ var App = {
       window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(u));
     })
 
-    $('#footnote').on('DOMSubtreeModified', function() {
-      console.log('skjdsfkdj')
+    $('#share_modal').on('hidden.bs.modal', function () {
+      Player.pop.play()
     })
-    // $('body').on('click', 'iframe', function(e) { console.log('sdlkfj')});
   }
 };

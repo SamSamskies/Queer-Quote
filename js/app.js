@@ -3,7 +3,6 @@ $(document).ready(function() {
   App.initListeners();
 });
 
-
 var App = {
   initListeners: function() {
     $('#footnote').on('click', '.quote', function(e) {
@@ -20,13 +19,3 @@ var App = {
     });
   }
 };
-
-// <div id="mImageBox">
-//     <img id='my_image' src='http://www.catster.com/files/original.jpg'/>
-// </div>
-// <script>
-//     $('#my_image').click(function(e) {
-//         u = this.src;
-//         window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(u));
-//     })
-// </script>

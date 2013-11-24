@@ -1,8 +1,9 @@
-function Transcript(url) {
-
-  // hardcoding quotes for now
-  this.quotes = [
-                  new Quote(1, 3, 'Just testing...'),
-                  new Quote(3, 8, 'Nemo: Hello outLoud Radio listeners, this in Nemo, and I am here with')
-                ]
+function Transcript(quotes) {
+  this.quotes = []
+  for (i = 0; i < quotes.length; i++) {
+    this.quotes.push(new Quote(quotes[i].start_time.replace(/\D/g,'')/1000,
+                               quotes[i].end_time.replace(/\D/g,'')/1000,
+                               quotes[i].text))
+  }
+  console.log(quotes)
 }

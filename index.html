@@ -25,26 +25,24 @@
               </div>
               <div class="modal-body" id="image_display" style="text-align:center;">
                 <canvas width="500" height="400" style="border:1px solid black" id="can"></canvas>
-                </div>
-              <div class="modal-footer">
                 <form id="img_form" class="form-inline" role="form">
                   <div class="form-group">
 
-                    <label for="size">Size</label>
-                    <input type="text" name="size" id="size" value="600x400" size="8">
-
                     <label for="bgColor">Background</label>
                     <input type="text" class="color" name="bgColor" id="bgColor" value="000" size="6" maxlength="6">
-                  </div>
-                  <div class="form-group">
                     <label for="fgColor">Text Color</label>
                     <input type="text" class="color" name="fgColor" id="fgColor" value="fff" size="6" maxlength="6">
 
+                  </div>
+
+                  <div class="form-group">
                     <label for="text">Text</label>
-                    <input type="text" name="text" id="text" value="">
+                    <textarea name="text" id="text" value="" cols="40" rows="3"></textarea>
                   </div>
 
                 </form>
+                </div>
+              <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" id="update">Update Image</button>
               </div>

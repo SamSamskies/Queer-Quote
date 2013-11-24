@@ -1,37 +1,39 @@
 $(document).ready(function() {
-
-  // Update these 2 urls to change what podcast gets loaded on the page
-  var soundcloudUrl = 'http://soundcloud.com/outloud-radio-1/a-trans-cendent-perspective'
-  var srtUrl = 'http://srt2json.herokuapp.com/?url=http://new.outloudradio.org/sites/default/files/transcripts/A_Trans-cendent_Perspective.en_.srt'
-
   Player.init({
     container: '#soundcloud',
     footnoteTarget: 'footnote',
-    soundcloudUrl: soundcloudUrl,
-    srtUrl: srtUrl
+    soundcloudUrl: App.soundcloudUrl,
+    srtUrl: App.srtUrl
   });
   App.initListeners();
 });
 
 var App = {
-  initListeners: function() {
-    $('#footnote').on('click', '.quote', function(e) {
 
-      // temporary just for show
-      u = 'http://www.catster.com/files/original.jpg'
-      window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(u));
-      e.preventDefault()
-    });
+  // Update these 2 urls to change what podcast gets loaded on the page
+  soundcloudUrl: 'http://soundcloud.com/outloud-radio-1/a-trans-cendent-perspective',
+
+  srtUrl: 'http://srt2json.herokuapp.com/?url=http://new.outloudradio.org/sites/default/files/transcripts/A_Trans-cendent_Perspective.en_.srt',
+
+  initListeners: function() {
 
     $("#share_button").click(function(e) {
       e.preventDefault();
       drawText($(".quote:visible").html());
     });
 
-    $("#soundcloud").bind('DOMSubtreeModified', App.hideSpinner);
-  },
+    $("#soundcloud").on('DOMSubtreeModified', function() {
+      $('.spinner').fadeOut()
+    });
 
-  hideSpinner: function() {
-    $('.spinner').fadeOut()
+    $('button#share').on('click', function() {
+      u = 'http://www.catster.com/files/original.jpg'
+      window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(u));
+    })
+
+    // $('#footnote').on('DOMSubtreeModified', 'div:visible', function() {
+    //   console.log('skjdsfkdj')
+    // })
+    // $('body').on('click', 'iframe', function(e) { console.log('sdlkfj')});
   }
 };

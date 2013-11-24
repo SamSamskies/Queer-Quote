@@ -7,13 +7,7 @@ function init() {
 }
 
 function drawText() {
-      // var size = $("#size").val(),
-      // bgColor = $("#bgColor").val(),
-      // fgColor = $("#fgColor").val(),
-      // originalText = $("#text").val(),
-      // finalText = originalText.split(' ').join('+');
-      // console.log(finalText);
-    ctx.fillStyle = "000000";
+    ctx.fillStyle = $("#bgColor").val();
     ctx.fillRect(0,0,500,400);
     ctx.fillStyle = $("#fgColor").val();
     ctx.font = "24pt Helvetica";

@@ -2,6 +2,11 @@ body {
 	background-color: #000066;
 }
 
+#canvas-hack {
+  font-family: Berkshire Swash;
+  color: #000066;
+}
+
 .spinner {
   margin-left: 175px;
 }

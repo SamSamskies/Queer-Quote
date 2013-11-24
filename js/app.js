@@ -23,12 +23,12 @@ var App = {
 
     $("#share_button").click(function(e) {
       e.preventDefault();
-      text = $(".quote:visible").html();
+
+      text = $(".quote:visible")
+      text = (text.length > 0) ? text.html() : 'Play the podcast. :)'
+
       getY();
       wrapText(ctx, text, x, y, maxWidth, lineHeight);
-
-      quote = $(".quote:visible")
-      quote = (quote.length > 0) ? quote.html() : 'Play the podcast. :)'
 
       Player.pop.pause()
     });

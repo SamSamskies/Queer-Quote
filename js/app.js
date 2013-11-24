@@ -1,5 +1,4 @@
 $(document).ready(function() {
-  App.initListeners();
   Player.init({
     container: App.soundcloudContainerId,
     footnoteTarget: App.footnoteTarget,
@@ -7,6 +6,7 @@ $(document).ready(function() {
     srtUrl: App.srtApiEndpoint + App.srtUrl
   });
   Canvas.init()
+  App.initListeners();
 });
 
 
@@ -43,6 +43,8 @@ var App = {
     })
 
     $('#share_modal').on('hidden.bs.modal', function () {
+      Canvas.clear()
+      Canvas.init()
       Player.pop.play()
     })
   }

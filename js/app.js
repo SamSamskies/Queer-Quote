@@ -3,17 +3,18 @@ $(document).ready(function() {
     container: '#soundcloud',
     footnoteTarget: 'footnote',
     soundcloudUrl: App.soundcloudUrl,
-    srtUrl: App.srtUrl
+    srtUrl: App.srtApiEndpoint + App.srtUrl
   });
   App.initListeners();
 });
 
 var App = {
 
+  srtApiEndpoint: 'http://srt2json.herokuapp.com/?url=',
+
   // Update these 2 urls to change what podcast gets loaded on the page
   soundcloudUrl: 'http://soundcloud.com/outloud-radio-1/a-trans-cendent-perspective',
-
-  srtUrl: 'http://srt2json.herokuapp.com/?url=http://new.outloudradio.org/sites/default/files/transcripts/A_Trans-cendent_Perspective.en_.srt',
+  srtUrl: 'http://new.outloudradio.org/sites/default/files/transcripts/A_Trans-cendent_Perspective.en_.srt',
 
   initListeners: function() {
 

@@ -6,6 +6,14 @@ $(document).ready(function() {
 
 var App = {
   initListeners: function() {
+    $('#footnote').on('click', '.quote', function(e) {
+
+      // temporary just for show
+      u = 'http://www.catster.com/files/original.jpg'
+      window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(u));
+      e.preventDefault()
+    });
+
     $("#update").click(function(e) {
       e.preventDefault();
       drawText($(".quote").html());

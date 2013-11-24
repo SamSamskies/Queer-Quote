@@ -8,7 +8,7 @@ var App = {
   initListeners: function() {
     $("#update").click(function(e) {
       e.preventDefault();
-      drawText();
+      drawText($(".quote").html());
     });
   }
 };

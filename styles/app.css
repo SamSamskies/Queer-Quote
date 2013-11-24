@@ -2,8 +2,12 @@ body {
 	background-color: #000066;
 }
 
+.spinner {
+  margin-left: 175px;
+}
+
 .container {
-	max-width: 600px;
+	max-width: 900px;
 }
 
 /* Header */
@@ -12,9 +16,13 @@ body {
 	font-size: 1.3em;
 }
 
+.footer p {
+  text-align: center;
+}
+
 #outloud_logo {
 	height: 30px;
-	margin-left: 10px
+	margin-left: 15px
 }
 
 /* Widget */

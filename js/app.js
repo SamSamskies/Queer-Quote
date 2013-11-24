@@ -1,34 +1,46 @@
 $(document).ready(function() {
-  Player.init( '#soundcloud', 'http://soundcloud.com/outloud-radio-1/a-trans-cendent-perspective' );
+  Player.init({
+    container: '#soundcloud',
+    footnoteTarget: 'footnote',
+    soundcloudUrl: App.soundcloudUrl,
+    srtUrl: App.srtUrl
+  });
   App.initListeners();
 });
 
-
 var App = {
-  initListeners: function() {
-    $('#footnote').on('click', '.quote', function(e) {
 
-      // temporary just for show
-      u = 'http://www.catster.com/files/original.jpg'
-      window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(u));
-      e.preventDefault()
-    });
+  // Update these 2 urls to change what podcast gets loaded on the page
+  soundcloudUrl: 'http://soundcloud.com/outloud-radio-1/a-trans-cendent-perspective',
+
+  srtUrl: 'http://srt2json.herokuapp.com/?url=http://new.outloudradio.org/sites/default/files/transcripts/A_Trans-cendent_Perspective.en_.srt',
+
+  initListeners: function() {
 
     $("#share_button").click(function(e) {
       e.preventDefault();
       text = $(".quote:visible").html();
       getY();
       wrapText(ctx, text, x, y, maxWidth, lineHeight);
+
+      quote = $(".quote:visible")
+      quote = (quote.length > 0) ? quote.html() : 'Play the podcast. :)'
+
+      Player.pop.pause()
     });
+
+    $("#soundcloud").on('DOMSubtreeModified', function() {
+      $('.spinner').fadeOut()
+
+    });
+
+    $('button#share').on('click', function() {
+      u = 'http://www.catster.com/files/original.jpg'
+      window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(u));
+    })
+
+    $('#share_modal').on('hidden.bs.modal', function () {
+      Player.pop.play()
+    })
   }
 };
-
-// <div id="mImageBox">
-//     <img id='my_image' src='http://www.catster.com/files/original.jpg'/>
-// </div>
-// <script>
-//     $('#my_image').click(function(e) {
-//         u = this.src;
-//         window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(u));
-//     })
-// </script>

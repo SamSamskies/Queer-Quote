@@ -20,16 +20,18 @@
     <div class='container'>
 
     <!-- Header -->
-    <div class="header">
+    <div class="header row">
+      <div class="col-md-offset-2">
         <ul class="nav nav-pills pull-right">
         </ul>
-        <h3 class="text-muted">Queer Quote for<img id="outloud_logo" src="images/logo.jpg"></h3>
+        <h3 class="text-muted"><img src="http://i.imgur.com/YQdIyUS.jpg"> for <img src="http://i.imgur.com/8poNTbe.jpg"></h3>
       </div>
+    </div>
 
     <div id="widget_container" class='jumbotron'>
 
           <!-- Share Modal -->
-          <div id="share_modal" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div id="share_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
@@ -51,8 +53,7 @@
                 </form>
                 </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="update">Update Image</button>
+                <button type="button" class="btn btn-primary" id="share">Share on FB</button>
                 </div>
               </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
@@ -60,7 +61,9 @@
 
         <!-- Widget -->
           <!-- Soundcloud -->
-          <div id='soundcloud'></div>
+          <div id='soundcloud'>
+            <img class='spinner' src='/images/ajax-loader.gif'>
+          </div>
 
           <!-- Quote -->
           <div id='footnote'></div>
@@ -77,14 +80,14 @@
 
       <!-- Footer -->
         <div class='footer'>
-          <p>Dream Team 2013</p>
+          <!--<p>Dream Team 2013</p>-->
         </div>
 
     <!-- End of container -->
     </div>
 
     <!-- Latest compiled and minified JavaScript -->
-    <script src="http://codeorigin.jquery.com/jquery-2.0.3.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
     <script src="http://cdn.popcornjs.org/code/dist/popcorn-complete.js"></script>
     <script src='js/quote.js'></script>

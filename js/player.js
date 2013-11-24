@@ -1,20 +1,32 @@
 var Player = {
 
-  init: function(container, url) {
-    this.pop = Popcorn.soundcloud( container, url );
-    this.transcript = new Transcript('http://new.outloudradio.org/sites/default/files/transcripts/A_Trans-cendent_Perspective.en_.srt')
-    this.generateTranscripts()
+  init: function(options) {
+    this.pop = Popcorn.soundcloud( options.container, options.soundcloudUrl);
+    var self = this
+    $.getJSON(options.srtUrl, function(response){
+      self.transcript = new Transcript(response)
+      self.generateTranscripts(options.footnoteTarget)
+    })
   },
 
-  generateTranscripts: function() {
+  generateTranscripts: function(footnoteTarget) {
     $.each(Player.transcript.quotes, function(index, quote) {
+      if (index === 0){
+        quote.start += .0001 // so that the first subtitle does not appear until player starts
+      }
       Player.pop.footnote( {
         start: quote.start,
         end: quote.end,
         text: quote.text,
-        target: 'footnote'
+        target: footnoteTarget
       })
     })
   }
 }
+
+
+
+
+
+
 

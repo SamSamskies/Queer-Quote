@@ -1,9 +1,9 @@
-function Transcript(array_of_quotes) {
+function Transcript(quotes) {
   this.quotes = []
-  var self = this 
-  for (i=0; i<array_of_quotes.length; i++) {
-    self.quotes.push(new Quote(array_of_quotes[i].start_time, 
-                               array_of_quotes[i].end_time, 
-                               array_of_quotes[i].text))
+  for (i = 0; i < quotes.length; i++) {
+    this.quotes.push(new Quote(quotes[i].start_time.replace(/\D/g,'')/1000,
+                               quotes[i].end_time.replace(/\D/g,'')/1000,
+                               quotes[i].text))
   }
+  console.log(quotes)
 }

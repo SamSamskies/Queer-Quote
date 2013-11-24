@@ -1,11 +1,12 @@
-Player = {
+var Player = {
 
   init: function(container, url) {
     this.pop = Popcorn.soundcloud( container, url );
-    this.transcript = $.getJSON("http://srt2json.herokuapp.com/?url=http://new.outloudradio.org/sites/default/files/transcripts/A_Trans-cendent_Perspective.en_.srt", function(response){
-      new Transcript(response)
+    var self = this
+    $.getJSON("http://srt2json.herokuapp.com/?url=http://new.outloudradio.org/sites/default/files/transcripts/A_Trans-cendent_Perspective.en_.srt", function(response){
+      self.transcript = new Transcript(response)
+      self.generateTranscripts()
     })
-
   },
 
   generateTranscripts: function() {
@@ -19,4 +20,10 @@ Player = {
     })
   }
 }
+
+
+
+
+
+
 

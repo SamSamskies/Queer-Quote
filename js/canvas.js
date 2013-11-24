@@ -10,6 +10,8 @@ var Canvas = {
     this.setBgColor();
     this.ctx.fillStyle = $("#fgColor").val();
     // Add variable to change font size based on y
+    this.ctx.font = '10pt Arial'
+    this.ctx.fillText('outloudradio.org', 380, 390);
     this.ctx.font = "bold 22pt Berkshire Swash";
   },
 

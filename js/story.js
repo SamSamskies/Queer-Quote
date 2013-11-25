@@ -38,7 +38,7 @@ var StoryController = {
       var story = StoryController.data[i]
       var soundcloudPermalink = story.soundcloudPermalink
       var srtUrl = story.srtUrl
-      $(App.soundcloudContainerId).empty()
+      Player.reset()
       Player.init({
         container: App.soundcloudContainerId,
         footnoteTarget: App.footnoteTarget,

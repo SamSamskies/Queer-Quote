@@ -21,6 +21,11 @@ var Player = {
         target: footnoteTarget
       })
     })
+  },
+
+  reset: function(){
+    $(App.soundcloudContainerId).empty()
+    $(App.footnoteTarget).empty()
   }
 }
 

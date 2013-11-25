@@ -7,9 +7,7 @@ var Canvas = {
     this.lineHeight = 42;
     this.x = (this.can.width - this.maxWidth) / 2;
     this.y = (this.can.height /2);
-    this.setBgColor();
-    this.ctx.fillStyle = $("#fgColor").val();
-    // Add variable to change font size based on y
+    this.setColors();
     this.renderWatermark();
     this.default_font = 38;
     this.ctx.font = "bold " + this.default_font +"pt Berkshire Swash";
@@ -21,21 +19,14 @@ var Canvas = {
     this.ctx.font = "bold " + this.default_font + "pt Berkshire Swash";
   },
 
-  setBgColor: function() {
-    this.clear();
+  setColors: function() {
     this.ctx.fillStyle = $("#bgColor").val();
     this.ctx.fillRect(0,0,500,400);
-  },
-
-  setFgColor: function() {
     this.ctx.fillStyle = $("#fgColor").val();
-
   },
 
-  // Add x variable change to this function
-  calcYposition: function(quote) {
-
-    var words = quote.split(' ');
+  renderedQuote: function(quote) {
+    words = quote.split(' ');
     var first_word = words[0];
     first_word = first_word.split('');
     if (first_word[first_word.length - 1] == ':') {
@@ -46,6 +37,12 @@ var Canvas = {
       words[0] = '"' + words[0];
       words[words.length-1] = words[words.length-1] + '"';
     }
+    return words;
+  },
+
+  // Add x variable change to this function
+  calcYposition: function(quote) {
+    var words = this.renderedQuote(quote);
 
     var y = this.y;
     var line = '';
@@ -82,17 +79,7 @@ var Canvas = {
 
   wrapText: function(quote) {
 
-    var words = quote.split(' ');
-    var first_word = words[0];
-    first_word = first_word.split('');
-    if (first_word[first_word.length - 1] == ':') {
-      words = words.slice(1, words.length);
-      words[0] = '"' + words[0];
-      words[words.length-1] = words[words.length-1] + '"';
-    } else {
-      words[0] = '"' + words[0];
-      words[words.length-1] = words[words.length-1] + '"';
-    }
+    var words = this.renderedQuote(quote);
 
     var line = '';
     var y = this.calcYposition(quote);

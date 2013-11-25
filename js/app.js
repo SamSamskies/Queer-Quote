@@ -28,13 +28,13 @@ var App = {
       quote = $(".quote:visible")
       quote = (quote.length > 0) ? quote.html() : 'Play the podcast. :)'
 
-      Canvas.wrapText(quote);
+      Canvas.renderText(quote);
       Player.pop.pause()
     });
 
     $(":input").change(function() {
       Canvas.init();
-      Canvas.wrapText($(".quote:visible").html());
+      Canvas.renderText($(".quote:visible").html());
     });
 
     $("#soundcloud").on('DOMSubtreeModified', function() {

@@ -25,7 +25,7 @@ var Canvas = {
     this.ctx.fillStyle = $("#fgColor").val();
   },
 
-  renderedQuote: function(quote) {
+  createQuote: function(quote) {
     words = quote.split(' ');
     var first_word = words[0];
     first_word = first_word.split('');
@@ -42,7 +42,7 @@ var Canvas = {
 
   // Add x variable change to this function
   calcYposition: function(quote) {
-    var words = this.renderedQuote(quote);
+    var words = this.createQuote(quote);
 
     var y = this.y;
     var line = '';
@@ -52,7 +52,6 @@ var Canvas = {
       var metrics = this.ctx.measureText(testLine);
       var testWidth = metrics.width;
       if (testWidth > this.maxWidth && i > 0) {
-        // console.log(y);
         line = words[i] + ' ';
         Canvas.updateLineHeight(1);
         Canvas.updateFontSize(2);
@@ -77,9 +76,9 @@ var Canvas = {
     Canvas.ctx.font = "bold " + this.default_font  +"pt Berkshire Swash";
 },
 
-  wrapText: function(quote) {
+  renderText: function(quote) {
 
-    var words = this.renderedQuote(quote);
+    var words = this.createQuote(quote);
 
     var line = '';
     var y = this.calcYposition(quote);

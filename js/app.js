@@ -47,6 +47,7 @@ var App = {
   insertStoryLink: function(i, title){
     var storyLink = "<a class='story' data-id='" + i + "' href=#>" + title + "</a>"
     document.querySelector(App.storyLinksTarget).innerHTML += storyLink
+      App.initListeners(); // THIS IS A HACK
   },
 
   initListeners: function() {
@@ -91,6 +92,19 @@ var App = {
       Canvas.clear()
       Canvas.init()
       Player.pop.play()
+    })
+
+    $('.story').on('click', function(e){
+      e.preventDefault()
+      var story = App.moreStories[e.target.dataset.id]
+      var soundcloudPermalink = story.soundcloudPermalink
+      var srtUrl = story.srtUrl
+      Player.init({
+        container: App.soundcloudContainerId,
+        footnoteTarget: App.footnoteTarget,
+        soundcloudUrl: App.soundcloudBaseUrl + soundcloudPermalink,
+        srtUrl: App.srtApiEndpoint + srtUrl
+      });
     })
   }
 };

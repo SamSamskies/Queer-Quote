@@ -38,9 +38,15 @@ var Player = {
   },
 
   reset: function(){
-    $(App.soundcloudContainerId).empty()
-    $(App.footnoteTarget).empty()
+    this.clearPlayer()
+
+  },
+
+  clearPlayer: function(){
+    $(this.containerTarget).empty()
+    $(this.footnoteTarget).empty()
   }
+
 }
 
 

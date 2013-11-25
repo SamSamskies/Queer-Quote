@@ -28,11 +28,11 @@ var App = {
 
   getMoreStories: function() {
     $.getJSON(App.outloudStoriesProxy, function(stories){
-      App.saveStories(stories)
+      App.saveStories(stories, App.addStoryLinkListeners)
     })
   },
 
-  saveStories: function(stories){
+  saveStories: function(stories, linkListenersCallback){
     $.each(stories, function(i,story){        
       var title = story['node_title']
       var storyData = {
@@ -42,12 +42,27 @@ var App = {
       App.moreStories.push(storyData)
       App.insertStoryLink(i, title)
     })
+    linkListenersCallback()
   }, 
 
   insertStoryLink: function(i, title){
     var storyLink = "<a class='story' data-id='" + i + "' href=#>" + title + "</a>"
     document.querySelector(App.storyLinksTarget).innerHTML += storyLink
-      App.initListeners(); // THIS IS A HACK
+  },
+
+  addStoryLinkListeners: function(){
+    $('.story').on('click', function(e){
+      e.preventDefault()
+      var story = App.moreStories[e.target.dataset.id]
+      var soundcloudPermalink = story.soundcloudPermalink
+      var srtUrl = story.srtUrl
+      Player.init({
+        container: App.soundcloudContainerId,
+        footnoteTarget: App.footnoteTarget,
+        soundcloudUrl: App.soundcloudBaseUrl + soundcloudPermalink,
+        srtUrl: App.srtApiEndpoint + srtUrl
+      });
+    })
   },
 
   initListeners: function() {
@@ -94,17 +109,5 @@ var App = {
       Player.pop.play()
     })
 
-    $('.story').on('click', function(e){
-      e.preventDefault()
-      var story = App.moreStories[e.target.dataset.id]
-      var soundcloudPermalink = story.soundcloudPermalink
-      var srtUrl = story.srtUrl
-      Player.init({
-        container: App.soundcloudContainerId,
-        footnoteTarget: App.footnoteTarget,
-        soundcloudUrl: App.soundcloudBaseUrl + soundcloudPermalink,
-        srtUrl: App.srtApiEndpoint + srtUrl
-      });
-    })
   }
 };

@@ -56,6 +56,7 @@ var App = {
       var story = App.moreStories[e.target.dataset.id]
       var soundcloudPermalink = story.soundcloudPermalink
       var srtUrl = story.srtUrl
+      $(App.soundcloudContainerId).empty()
       Player.init({
         container: App.soundcloudContainerId,
         footnoteTarget: App.footnoteTarget,

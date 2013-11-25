@@ -3,8 +3,12 @@ var Player = {
   init: function(options) {
     this.container = options.container
     this.footnoteTarget = options.footnoteTarget
-    this.pop = Popcorn.soundcloud( this.container, options.soundcloudUrl);
+    this.setupPlayer(options.soundcloudUrl)
     this.getTranscript(options.srtUrl)
+  },
+
+  setupPlayer: function(soundcloudUrl){
+    this.pop = Popcorn.soundcloud(this.container, soundcloudUrl);
   },
 
   getTranscript: function(srtUrl){

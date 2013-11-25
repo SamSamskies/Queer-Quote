@@ -24,17 +24,19 @@ var App = {
 
   getMoreStories: function() {
     var outloudStoriesProxy = "http://srt2json.herokuapp.com/outloud-stories"
-    $.getJSON(outloudStoriesProxy, function(stories){App.saveStories(stories)})
+    $.getJSON(outloudStoriesProxy, function(stories){
+      App.saveStories(stories)
+    })
   },
 
   saveStories: function(stories){
     $.each(stories, function(i,story){        
       var title = story['node_title']
-
-      var storyData = {}
-      storyData.srt = story['Transcript File']
-      storyData.permalink_id = title.replace(/\'/g,"").replace(/ /g,"-").toLowerCase()
-      App.moreStories << storyData
+      var storyData = {
+        srt: story['Transcript File'],
+        permalink_id: title.replace(/\'/g,"").replace(/ /g,"-").toLowerCase()
+      }
+      App.moreStories.push(storyData)
       App.insertStoryLink(i, title)
     })
   }, 

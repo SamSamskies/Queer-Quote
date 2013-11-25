@@ -37,9 +37,9 @@ var Player = {
     })
   },
 
-  reset: function(){
+  reset: function(options){
     this.clearPlayer()
-
+    this.setupPlayerAndTranscripts(options.soundcloudUrl, options.srtUrl)
   },
 
   clearPlayer: function(){

@@ -23,7 +23,7 @@ var App = {
 
   soundcloudContainerId: '#soundcloud',
   footnoteTarget: 'footnote',
-  storyLinksTarget: 'body',
+  storyLinksTarget: '.footer',
   moreStories: [],
 
   getMoreStories: function() {
@@ -47,7 +47,7 @@ var App = {
 
   insertStoryLink: function(i, title){
     var storyLink = "<a class='story' data-id='" + i + "' href=#>" + title + "</a>"
-    document.querySelector(App.storyLinksTarget).innerHTML += storyLink
+    $(App.storyLinksTarget).append(storyLink)
   },
 
   addStoryLinkListeners: function(){

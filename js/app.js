@@ -32,20 +32,8 @@ var App = {
       Player.pop.pause()
     });
 
-    $("#bgColor").change(function() {
-      Canvas.lineHeight = 42;
-      Canvas.default_font = 38;
-      Canvas.ctx.fillStyle = $("#bgColor").val();
-      Canvas.ctx.fillRect(0,0,500,400);
-      Canvas.ctx.fillStyle = $("#fgColor").val();
-      Canvas.wrapText($(".quote:visible").html());
-      Canvas.renderWatermark();
-    });
-
-    $("#fgColor").change(function() {
-      Canvas.lineHeight = 42;
-      Canvas.default_font = 38;
-      Canvas.ctx.fillStyle = $("#fgColor").val();
+    $(":input").change(function() {
+      Canvas.init();
       Canvas.wrapText($(".quote:visible").html());
     });
 

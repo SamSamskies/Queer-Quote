@@ -22,8 +22,14 @@ var Canvas = {
   },
 
   setBgColor: function() {
+    this.clear();
     this.ctx.fillStyle = $("#bgColor").val();
     this.ctx.fillRect(0,0,500,400);
+  },
+
+  setFgColor: function() {
+    this.ctx.fillStyle = $("#fgColor").val();
+
   },
 
   // Add x variable change to this function

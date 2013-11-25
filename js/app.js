@@ -14,18 +14,20 @@ $(document).ready(function() {
 var App = {
 
   // Update these 2 urls to change what podcast gets loaded on the page
-  soundcloudPermalink: '/a-trans-cendent-perspective'
+  soundcloudPermalink: 'a-trans-cendent-perspective',
   srtUrl: 'http://new.outloudradio.org/sites/default/files/transcripts/A_Trans-cendent_Perspective.en_.srt',
 
-  soundcloudBaseUrl: 'http://soundcloud.com/outloud-radio-1',
+  soundcloudBaseUrl: 'http://soundcloud.com/outloud-radio-1/',
+  srtApiEndpoint: 'http://srt2json.herokuapp.com/?url=',
+  outloudStoriesProxy: "http://srt2json.herokuapp.com/outloud-stories",
+
   soundcloudContainerId: '#soundcloud',
   footnoteTarget: 'footnote',
-  srtApiEndpoint: 'http://srt2json.herokuapp.com/?url=',
+  storyLinksTarget: 'body',
   moreStories: [],
 
   getMoreStories: function() {
-    var outloudStoriesProxy = "http://srt2json.herokuapp.com/outloud-stories"
-    $.getJSON(outloudStoriesProxy, function(stories){
+    $.getJSON(App.outloudStoriesProxy, function(stories){
       App.saveStories(stories)
     })
   },
@@ -34,7 +36,7 @@ var App = {
     $.each(stories, function(i,story){        
       var title = story['node_title']
       var storyData = {
-        soundcloudPermalink: title.replace(/\'/g,"").replace(/ /g,"-").toLowerCase()
+        soundcloudPermalink: title.replace(/\'/g,"").replace(/ /g,"-").toLowerCase(),
         srtUrl: story['Transcript File'],
       }
       App.moreStories.push(storyData)
@@ -44,7 +46,7 @@ var App = {
 
   insertStoryLink: function(i, title){
     var storyLink = "<a class='story' data-id='" + i + "' href=#>" + title + "</a>"
-    document.querySelector('body').innerHTML += storyLink
+    document.querySelector(App.storyLinksTarget).innerHTML += storyLink
   },
 
   initListeners: function() {

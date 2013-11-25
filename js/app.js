@@ -22,7 +22,7 @@ var App = {
   outloudStoriesProxy: "http://srt2json.herokuapp.com/outloud-stories",
 
   soundcloudContainerId: '#soundcloud',
-  footnoteTarget: 'footnote',
+  footnoteTarget: '#footnote',
   storyLinksTarget: '.footer',
 
   initListeners: function() {

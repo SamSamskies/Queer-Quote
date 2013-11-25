@@ -10,11 +10,11 @@ var StoryController = {
   getStories: function() {
     var self = this
     $.getJSON(App.outloudStoriesProxy, function(stories){
-      self.saveStories(stories, self.addStoryLinkListeners)
+      self.saveStories(stories)
     })
   },
 
-  saveStories: function(stories, linkListenersCallback){
+  saveStories: function(stories){
     var self = this
     $.each(stories, function(i,story){        
       var title = story['node_title']
@@ -25,7 +25,7 @@ var StoryController = {
       self.data.push(storyData)
       self.insertStoryLink(i, title)
     })
-    linkListenersCallback()
+    self.addStoryLinkListeners()
   }, 
 
   insertStoryLink: function(i, title){

@@ -1,11 +1,17 @@
 var Player = {
 
   init: function(options) {
-    this.pop = Popcorn.soundcloud( options.container, options.soundcloudUrl);
+    this.container = options.container
+    this.footnoteTarget = options.footnoteTarget
+    this.pop = Popcorn.soundcloud( this.container, options.soundcloudUrl);
+    this.getTranscript(options.srtUrl)
+  },
+
+  getTranscript: function(srtUrl){
     var self = this
-    $.getJSON(options.srtUrl, function(response){
+    $.getJSON(srtUrl, function(response){
       self.transcript = new Transcript(response)
-      self.generateFootnotes(options.footnoteTarget)
+      self.generateFootnotes(self.footnoteTarget)
     })
   },
 

@@ -1,14 +1,18 @@
 var Player = {
 
   init: function(options) {
-    this.containerTarget = options.container
-    this.footnoteTarget = options.footnoteTarget
-    this.setupPlayerAndTranscripts(options.soundcloudUrl, options.srtUrl)
+    this.containerTarget = options.container,
+    this.footnoteTarget = options.footnoteTarget,
+    this.soundcloudBaseUrl = options.soundcloudBaseUrl,
+    this.srtApiEndpoint = options.srtApiEndpoint,
+    this.setupPlayerAndTranscripts(options.soundcloudPermalink, options.srtUrl)
   },
 
-  setupPlayerAndTranscripts: function(soundcloudUrl, srtUrl){
+  setupPlayerAndTranscripts: function(soundcloudPermalink, srtUrl){
+    var soundcloudUrl = this.soundcloudBaseUrl + soundcloudPermalink
+    var srtRequestUrl = this.srtApiEndpoint + srtUrl
     this.setupPlayer(soundcloudUrl)
-    this.getTranscript(srtUrl)
+    this.getTranscript(srtRequestUrl)
   },
 
   setupPlayer: function(soundcloudUrl){
@@ -39,7 +43,7 @@ var Player = {
 
   reset: function(options){
     this.clearPlayer()
-    this.setupPlayerAndTranscripts(options.soundcloudUrl, options.srtUrl)
+    this.setupPlayerAndTranscripts(options.soundcloudPermalink, options.srtUrl)
   },
 
   clearPlayer: function(){

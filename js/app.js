@@ -2,8 +2,10 @@ $(document).ready(function() {
   Player.init({
     container: App.soundcloudContainerId,
     footnoteTarget: App.footnoteTarget,
-    soundcloudUrl: App.soundcloudBaseUrl + App.soundcloudPermalink,
-    srtUrl: App.srtApiEndpoint + App.srtUrl
+    soundcloudBaseUrl: App.soundcloudBaseUrl,
+    soundcloudPermalink: App.soundcloudPermalink,
+    srtApiEndpoint: App.srtApiEndpoint,
+    srtUrl: App.srtUrl
   });
   Canvas.init()
   StoryController.init(App.storyLinksTarget);

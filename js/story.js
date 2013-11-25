@@ -35,13 +35,8 @@ var StoryController = {
     $('.story').on('click', function(e){
       e.preventDefault()
       var i = e.target.dataset.id
-      var story = StoryController.data[i]
-      var soundcloudPermalink = story.soundcloudPermalink
-      var srtUrl = story.srtUrl
-      Player.reset({
-        soundcloudUrl: App.soundcloudBaseUrl + soundcloudPermalink,
-        srtUrl: App.srtApiEndpoint + srtUrl
-      });
+      var storyData = StoryController.data[i]
+      Player.reset(storyData);
     })
   }
 }

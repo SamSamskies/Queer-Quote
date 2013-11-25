@@ -1,4 +1,4 @@
-var StoryController = {
+var LinkController = {
 
   data: [],
 
@@ -38,7 +38,7 @@ var StoryController = {
     $('.story').on('click', function(e){
       e.preventDefault()
       var i = e.target.dataset.id
-      var storyData = StoryController.data[i]
+      var storyData = LinkController.data[i]
       Player.reset(storyData);
     })
   }

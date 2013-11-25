@@ -6,7 +6,7 @@ $(document).ready(function() {
     srtUrl: App.srtApiEndpoint + App.srtUrl
   });
   Canvas.init()
-  App.getMoreStories();
+  StoryController.init(App.storyLinksTarget);
   App.initListeners();
 });
 
@@ -24,47 +24,6 @@ var App = {
   soundcloudContainerId: '#soundcloud',
   footnoteTarget: 'footnote',
   storyLinksTarget: '.footer',
-  moreStories: [],
-
-  getMoreStories: function() {
-    $.getJSON(App.outloudStoriesProxy, function(stories){
-      App.saveStories(stories, App.addStoryLinkListeners)
-    })
-  },
-
-  saveStories: function(stories, linkListenersCallback){
-    $.each(stories, function(i,story){        
-      var title = story['node_title']
-      var storyData = {
-        soundcloudPermalink: title.replace(/\'/g,"").replace(/ /g,"-").toLowerCase(),
-        srtUrl: story['Transcript File'],
-      }
-      App.moreStories.push(storyData)
-      App.insertStoryLink(i, title)
-    })
-    linkListenersCallback()
-  }, 
-
-  insertStoryLink: function(i, title){
-    var storyLink = "<a class='story' data-id='" + i + "' href=#>" + title + "</a>"
-    $(App.storyLinksTarget).append(storyLink)
-  },
-
-  addStoryLinkListeners: function(){
-    $('.story').on('click', function(e){
-      e.preventDefault()
-      var story = App.moreStories[e.target.dataset.id]
-      var soundcloudPermalink = story.soundcloudPermalink
-      var srtUrl = story.srtUrl
-      $(App.soundcloudContainerId).empty()
-      Player.init({
-        container: App.soundcloudContainerId,
-        footnoteTarget: App.footnoteTarget,
-        soundcloudUrl: App.soundcloudBaseUrl + soundcloudPermalink,
-        srtUrl: App.srtApiEndpoint + srtUrl
-      });
-    })
-  },
 
   initListeners: function() {
 

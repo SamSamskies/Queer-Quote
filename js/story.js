@@ -2,14 +2,15 @@ var StoryController = {
 
   data: [],
 
-  init: function(linksTarget){
+  init: function(linksTarget, apiUrl){
     this.linksTarget = linksTarget
+    this.apiUrl = apiUrl
     this.getStories();
   },
 
-  getStories: function() {
+  getStories: function(){
     var self = this
-    $.getJSON(App.outloudStoriesProxy, function(stories){
+    $.getJSON(this.apiUrl, function(stories){
       self.saveStories(stories)
     })
   },

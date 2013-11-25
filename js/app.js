@@ -8,7 +8,7 @@ $(document).ready(function() {
     srtUrl: App.srtUrl
   });
   Canvas.init()
-  StoryController.init(App.storyLinksTarget);
+  StoryController.init(App.storyLinksTarget, App.outloudStoriesProxy);
   App.initListeners();
 });
 

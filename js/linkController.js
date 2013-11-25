@@ -1,6 +1,6 @@
 var LinkController = {
 
-  data: [],
+  storyData: [],
 
   init: function(linksTarget, apiUrl){
     this.linksTarget = linksTarget
@@ -19,11 +19,11 @@ var LinkController = {
     var self = this
     $.each(stories, function(i,story){        
       var title = story['node_title']
-      var storyData = {
+      var story = {
         soundcloudPermalink: title.replace(/\'/g,"").replace(/ /g,"-").toLowerCase(),
         srtUrl: story['Transcript File'],
       }
-      self.data.push(storyData)
+      self.storyData.push(story)
       self.insertStoryLink(i, title)
     })
     self.addStoryLinkListeners()
@@ -38,8 +38,8 @@ var LinkController = {
     $('.story').on('click', function(e){
       e.preventDefault()
       var i = e.target.dataset.id
-      var storyData = LinkController.data[i]
-      Player.reset(storyData);
+      var newStory = LinkController.storyData[i]
+      Player.reset(newStory);
     })
   }
 }

@@ -2,7 +2,7 @@ $(document).ready(function() {
   Player.init({
     container: App.soundcloudContainerId,
     footnoteTarget: App.footnoteTarget,
-    soundcloudUrl: App.soundcloudUrl,
+    soundcloudUrl: App.soundcloudBaseUrl + App.soundcloudPermalink,
     srtUrl: App.srtApiEndpoint + App.srtUrl
   });
   Canvas.init()
@@ -14,9 +14,10 @@ $(document).ready(function() {
 var App = {
 
   // Update these 2 urls to change what podcast gets loaded on the page
-  soundcloudUrl: 'http://soundcloud.com/outloud-radio-1/a-trans-cendent-perspective',
+  soundcloudPermalink: '/a-trans-cendent-perspective'
   srtUrl: 'http://new.outloudradio.org/sites/default/files/transcripts/A_Trans-cendent_Perspective.en_.srt',
 
+  soundcloudBaseUrl: 'http://soundcloud.com/outloud-radio-1',
   soundcloudContainerId: '#soundcloud',
   footnoteTarget: 'footnote',
   srtApiEndpoint: 'http://srt2json.herokuapp.com/?url=',
@@ -33,8 +34,8 @@ var App = {
     $.each(stories, function(i,story){        
       var title = story['node_title']
       var storyData = {
-        srt: story['Transcript File'],
-        permalink_id: title.replace(/\'/g,"").replace(/ /g,"-").toLowerCase()
+        soundcloudPermalink: title.replace(/\'/g,"").replace(/ /g,"-").toLowerCase()
+        srtUrl: story['Transcript File'],
       }
       App.moreStories.push(storyData)
       App.insertStoryLink(i, title)

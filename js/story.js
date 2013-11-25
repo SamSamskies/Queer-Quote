@@ -8,20 +8,22 @@ var StoryController = {
   },
 
   getStories: function() {
+    var self = this
     $.getJSON(App.outloudStoriesProxy, function(stories){
-      StoryController.saveStories(stories, StoryController.addStoryLinkListeners)
+      self.saveStories(stories, self.addStoryLinkListeners)
     })
   },
 
   saveStories: function(stories, linkListenersCallback){
+    var self = this
     $.each(stories, function(i,story){        
       var title = story['node_title']
       var storyData = {
         soundcloudPermalink: title.replace(/\'/g,"").replace(/ /g,"-").toLowerCase(),
         srtUrl: story['Transcript File'],
       }
-      StoryController.data.push(storyData)
-      StoryController.insertStoryLink(i, title)
+      self.data.push(storyData)
+      self.insertStoryLink(i, title)
     })
     linkListenersCallback()
   }, 

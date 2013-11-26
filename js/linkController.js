@@ -32,7 +32,7 @@ var LinkController = {
   }, 
 
   insertStoryLink: function(i, options){
-    var storyLink = "<a href='#'><img class='story' data-id='" + i + "' src='" + options.artworkUrl + "' alt='" + options.title + "'></a>"
+    var storyLink = "<a href='#'><img class='story' data-id='" + i + "' src='" + options.artworkUrl + "' title='" + options.title + "' alt='Listen to podcast'></a>"
     $(this.linksTarget).append(storyLink)
   },
 

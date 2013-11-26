@@ -2,10 +2,13 @@ $(document).ready(function() {
   Player.init({
     container: App.soundcloudContainerId,
     footnoteTarget: App.footnoteTarget,
-    soundcloudUrl: App.soundcloudUrl,
-    srtUrl: App.srtApiEndpoint + App.srtUrl
+    soundcloudBaseUrl: App.soundcloudBaseUrl,
+    soundcloudPermalink: App.soundcloudPermalink,
+    srtApiEndpoint: App.srtApiEndpoint,
+    srtUrl: App.srtUrl
   });
   Canvas.init()
+  LinkController.init(App.storyLinksTarget, App.outloudStoriesProxy);
   App.initListeners();
 });
 
@@ -13,12 +16,16 @@ $(document).ready(function() {
 var App = {
 
   // Update these 2 urls to change what podcast gets loaded on the page
-  soundcloudUrl: 'http://soundcloud.com/outloud-radio-1/a-trans-cendent-perspective',
+  soundcloudPermalink: 'a-trans-cendent-perspective',
   srtUrl: 'http://new.outloudradio.org/sites/default/files/transcripts/A_Trans-cendent_Perspective.en_.srt',
 
-  soundcloudContainerId: '#soundcloud',
-  footnoteTarget: 'footnote',
+  soundcloudBaseUrl: 'http://soundcloud.com/outloud-radio-1/',
   srtApiEndpoint: 'http://srt2json.herokuapp.com/?url=',
+  outloudStoriesProxy: "http://srt2json.herokuapp.com/outloud-stories",
+
+  soundcloudContainerId: '#soundcloud',
+  footnoteTarget: '#footnote',
+  storyLinksTarget: '.thumbnails',
 
   initListeners: function() {
 
@@ -51,5 +58,6 @@ var App = {
       Canvas.init()
       Player.pop.play()
     })
+
   }
 };

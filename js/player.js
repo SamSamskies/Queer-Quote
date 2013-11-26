@@ -1,11 +1,29 @@
 var Player = {
 
   init: function(options) {
-    this.pop = Popcorn.soundcloud( options.container, options.soundcloudUrl);
+    this.containerTarget = options.container,
+    this.footnoteTarget = options.footnoteTarget,
+    this.soundcloudBaseUrl = options.soundcloudBaseUrl,
+    this.srtApiEndpoint = options.srtApiEndpoint,
+    this.setupPlayerAndTranscripts(options.soundcloudPermalink, options.srtUrl)
+  },
+
+  setupPlayerAndTranscripts: function(soundcloudPermalink, srtUrl){
+    var soundcloudUrl = this.soundcloudBaseUrl + soundcloudPermalink
+    var srtRequestUrl = this.srtApiEndpoint + srtUrl
+    this.setupPlayer(soundcloudUrl)
+    this.getTranscript(srtRequestUrl)
+  },
+
+  setupPlayer: function(soundcloudUrl){
+    this.pop = Popcorn.soundcloud(this.containerTarget, soundcloudUrl);
+  },
+
+  getTranscript: function(srtUrl){
     var self = this
-    $.getJSON(options.srtUrl, function(response){
+    $.getJSON(srtUrl, function(response){
       self.transcript = new Transcript(response)
-      self.generateFootnotes(options.footnoteTarget)
+      self.generateFootnotes(self.footnoteTarget)
     })
   },
 
@@ -21,7 +39,18 @@ var Player = {
         target: footnoteTarget
       })
     })
+  },
+
+  reset: function(options){
+    this.clearPlayer()
+    this.setupPlayerAndTranscripts(options.soundcloudPermalink, options.srtUrl)
+  },
+
+  clearPlayer: function(){
+    $(this.containerTarget).empty()
+    $(this.footnoteTarget).empty()
   }
+
 }
 
 

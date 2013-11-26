@@ -76,6 +76,11 @@ body {
 		float: right;
 	}
 
+	/* Thumbnails */
+	.story {
+		padding: 4px 4px 4px 4px;
+	}
+
 /* Footer */
 .footer {
   padding-top: 20px;

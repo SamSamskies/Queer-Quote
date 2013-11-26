@@ -25,7 +25,7 @@ var App = {
 
   soundcloudContainerId: '#soundcloud',
   footnoteTarget: '#footnote',
-  storyLinksTarget: '.footer',
+  storyLinksTarget: '.thumbnails',
 
   initListeners: function() {
 

@@ -18,19 +18,21 @@ var LinkController = {
   saveStories: function(stories){
     var self = this
     $.each(stories, function(i,story){        
-      var title = story['node_title']
       var story = {
-        soundcloudPermalink: title.replace(/\'/g,"").replace(/ /g,"-").toLowerCase(),
+        title: story['node_title'],
+        description: story['iTunes Subtitle'],
+        soundcloudPermalink: story['permalink'],
         srtUrl: story['Transcript File'],
+        artworkUrl: story['artwork_url']
       }
       self.storyData.push(story)
-      self.insertStoryLink(i, title)
+      self.insertStoryLink(i, story)
     })
     self.addStoryLinkListeners()
   }, 
 
-  insertStoryLink: function(i, title){
-    var storyLink = "<a class='story' data-id='" + i + "' href=#>" + title + "</a>"
+  insertStoryLink: function(i, options){
+    var storyLink = "<a href='#'><img class='story' data-id='" + i + "' src='" + options.artworkUrl + "' alt='" + options.title + "'></a>"
     $(this.linksTarget).append(storyLink)
   },
 

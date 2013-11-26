@@ -19,7 +19,7 @@ var LinkController = {
     var self = this
     $.each(stories, function(i,story){        
       var story = {
-        title: story['node_title'],
+        title: story['node_title'].replace("'", "&#39"),
         description: story['iTunes Subtitle'],
         soundcloudPermalink: story['permalink'],
         srtUrl: story['Transcript File'],

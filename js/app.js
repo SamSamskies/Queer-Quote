@@ -1,9 +1,10 @@
 $(document).ready(function() {
+  LocationHash.parse()
   Player.init({
     container: App.soundcloudContainerId,
     footnoteTarget: App.footnoteTarget,
     soundcloudBaseUrl: App.soundcloudBaseUrl,
-    soundcloudPermalink: App.soundcloudPermalink,
+    soundcloudPermalink: LocationHash.object.p,
     srtApiEndpoint: App.srtApiEndpoint,
     srtUrl: App.srtUrl
   });
@@ -73,3 +74,21 @@ var App = {
 
   }
 };
+
+var LocationHash = {
+  object: {
+    p: App.soundcloudPermalink // default
+  },
+  get: window.location.hash,
+  parse: function(){
+    this.toObj(this.get)
+    return this.object
+  },
+  toObj: function(urlhash){
+    var strObjs = urlhash.substring(1).split('&')
+    $.each(strObjs, function(i,str){
+      var pair = str.split('=')
+      LocationHash.object[pair[0]] = pair[1]
+    })
+  }
+}

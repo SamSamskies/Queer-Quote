@@ -13,14 +13,14 @@ var LinkController = {
     $.getJSON(this.apiUrl, function(stories){
       self.saveStories(stories)
     }).done(function(){
-      LinkController.transcriptForThisStory(LocationHash.object.p, function(response){
+      LinkController.transcriptForThisStory(LocationHash.permalink, function(responseSrtUrl){
         Player.init({
           container: App.soundcloudContainerId,
           footnoteTarget: App.footnoteTarget,
           soundcloudBaseUrl: App.soundcloudBaseUrl,
-          soundcloudPermalink: LocationHash.object.p,
+          soundcloudPermalink: LocationHash.permalink,
           srtApiEndpoint: App.srtApiEndpoint,
-          srtUrl: response
+          srtUrl: responseSrtUrl
         });
       })
     })

@@ -1,6 +1,6 @@
 $(document).ready(function() {
-  LinkController.init(App.storyLinksTarget, App.outloudStoriesProxy);
   LocationHash.parse()
+  LinkController.init(App.storyLinksTarget, App.outloudStoriesProxy);
   Canvas.init()
   App.initListeners();
 });
@@ -68,19 +68,10 @@ var App = {
 };
 
 var LocationHash = {
-  object: {
-    p: App.soundcloudPermalink // default
-  },
-  get: window.location.hash,
   parse: function(){
-    this.toObj(this.get)
-    return this.object
+    var hashstr = window.location.hash.substring(1)
+    if (hashstr.length) 
+      LocationHash.permalink = hashstr
   },
-  toObj: function(urlhash){
-    var strObjs = urlhash.substring(1).split('&')
-    $.each(strObjs, function(i,str){
-      var pair = str.split('=')
-      LocationHash.object[pair[0]] = pair[1]
-    })
-  }
+  permalink: App.soundcloudPermalink
 }

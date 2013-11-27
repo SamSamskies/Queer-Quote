@@ -73,5 +73,8 @@ var LocationHash = {
     if (hashstr.length) 
       LocationHash.permalink = hashstr
   },
-  permalink: App.soundcloudPermalink
+  permalink: App.soundcloudPermalink,
+  update: function(newPermalink){
+    window.location.hash = newPermalink
+  }
 }

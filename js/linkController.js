@@ -52,7 +52,8 @@ var LinkController = {
       e.preventDefault()
       var i = e.target.dataset.id
       var newStory = LinkController.storyData[i]
-      Player.reset(newStory);
+      Player.reset(newStory)
+      LocationHash.update(newStory.soundcloudPermalink)
     })
   },
 

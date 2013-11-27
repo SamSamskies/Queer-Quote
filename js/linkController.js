@@ -13,7 +13,7 @@ var LinkController = {
     $.getJSON(this.apiUrl, function(stories){
       self.saveStories(stories)
     }).done(function(){
-      LinkController.transcriptForThisStory(LocationHash.permalink, function(responseSrtUrl){
+      LinkController.findTranscript(LocationHash.permalink, function(responseSrtUrl){
         Player.init({
           container: App.soundcloudContainerId,
           footnoteTarget: App.footnoteTarget,
@@ -57,7 +57,7 @@ var LinkController = {
     })
   },
 
-  transcriptForThisStory: function(permalink, callback){
+  findTranscript: function(permalink, callback){
     $.each(LinkController.storyData, function(i,story){
       if (story.soundcloudPermalink === permalink){
         callback(story.srtUrl)

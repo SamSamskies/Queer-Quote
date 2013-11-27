@@ -1,15 +1,7 @@
 $(document).ready(function() {
-  LocationHash.parse()
-  Player.init({
-    container: App.soundcloudContainerId,
-    footnoteTarget: App.footnoteTarget,
-    soundcloudBaseUrl: App.soundcloudBaseUrl,
-    soundcloudPermalink: LocationHash.object.p,
-    srtApiEndpoint: App.srtApiEndpoint,
-    srtUrl: App.srtUrl
-  });
-  Canvas.init()
   LinkController.init(App.storyLinksTarget, App.outloudStoriesProxy);
+  LocationHash.parse()
+  Canvas.init()
   App.initListeners();
 });
 

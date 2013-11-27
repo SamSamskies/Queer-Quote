@@ -13,7 +13,7 @@ var LinkController = {
     $.getJSON(this.apiUrl, function(stories){
       self.saveStories(stories)
     }).done(function(){
-      LinkController.findTranscript(LocationHash.permalink, function(responseSrtUrl){
+      self.findTranscript(LocationHash.permalink, function(responseSrtUrl){
         Player.init({
           container: App.soundcloudContainerId,
           footnoteTarget: App.footnoteTarget,
@@ -48,17 +48,19 @@ var LinkController = {
   },
 
   addStoryLinkListeners: function(){
+    var self = this
     $('.story').on('click', function(e){
       e.preventDefault()
       var i = e.target.dataset.id
-      var newStory = LinkController.storyData[i]
+      var newStory = self.storyData[i]
       Player.reset(newStory)
       LocationHash.update(newStory.soundcloudPermalink)
     })
   },
 
   findTranscript: function(permalink, callback){
-    $.each(LinkController.storyData, function(i,story){
+    var self = this
+    $.each(self.storyData, function(i,story){
       if (story.soundcloudPermalink === permalink){
         callback(story.srtUrl)
       }

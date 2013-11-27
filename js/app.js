@@ -25,12 +25,12 @@ var App = {
     $("#share_button").click(function(e) {
       e.preventDefault();
 
-      quote = $(".quote:visible")
-      quote = (quote.length > 0) ? quote.html() : 'Play the podcast. :)'
+      quote = $(".quote:visible");
+      quote = (quote.length > 0) ? quote.html() : 'Play the podcast. :)';
 
-    Canvas.renderText(quote);
-    Player.pop.pause()
-  });
+      Canvas.renderText(quote);
+      Player.pop.pause();
+    });
 
     $(":input").change(function() {
       Canvas.init();
@@ -38,7 +38,7 @@ var App = {
     });
 
     $("#soundcloud").on('DOMSubtreeModified', function() {
-      $('.spinner').fadeOut()
+      $('.spinner').fadeOut();
 
     });
 
@@ -82,9 +82,9 @@ var App = {
     }),
 
     $('#share_modal').on('hidden.bs.modal', function () {
-      Canvas.clear()
-      Canvas.init()
-      Player.pop.play()
+      Canvas.clear();
+      Canvas.init();
+      Player.pop.play();
     });
   }
 };

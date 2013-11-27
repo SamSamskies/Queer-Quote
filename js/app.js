@@ -28,9 +28,9 @@ var App = {
       quote = $(".quote:visible")
       quote = (quote.length > 0) ? quote.html() : 'Play the podcast. :)'
 
-      Canvas.renderText(quote);
-      Player.pop.pause()
-    });
+    Canvas.renderText(quote);
+    Player.pop.pause()
+  });
 
     $(":input").change(function() {
       Canvas.init();
@@ -42,15 +42,42 @@ var App = {
 
     });
 
-    $('button#share').on('click', function() {
-      Canvas2Image.saveAsPNG($("#can")[0]);
-    })
+    $('button#share').on('click', function share() {
+      // Canvas2Image.saveAsPNG($("#can")[0]);
+      try {
+        var img = Canvas.can.toDataURL('image/jpeg', 0.9).split(',')[1];
+      } catch(e) {
+        var img = Canvas.can.toDataURL().split(',')[1];
+      }
+      var w = window.open();
+      w.document.write('Uploading...');
+      $.ajax({
+        url: 'https://api.imgur.com/3/image',
+        headers: {
+          'Authorization': 'Client-ID 05de8015cc777bc'
+        },
+        type: 'POST',
+        data: {
+          type: 'base64',
+          name: 'neon.jpg',
+          title: 'test title',
+          caption: 'test caption',
+          image: img
+        },
+        dataType: 'json'
+      }).success(function(data) {
+        var imgurLink = data.data.link;
+        w.location.href= 'https://www.facebook.com/sharer/sharer.php?u='+imgurLink;
+      }).error(function() {
+        alert('Could not reach api.imgur.com. Sorry :(');
+          w.close();
+        });
+    }),
 
     $('#share_modal').on('hidden.bs.modal', function () {
       Canvas.clear()
       Canvas.init()
       Player.pop.play()
-    })
-
+    });
   }
 };

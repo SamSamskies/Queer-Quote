@@ -12,6 +12,17 @@ var LinkController = {
     var self = this
     $.getJSON(this.apiUrl, function(stories){
       self.saveStories(stories)
+    }).done(function(){
+      self.findTranscript(LocationHash.permalink, function(responseSrtUrl){
+        Player.init({
+          container: App.soundcloudContainerId,
+          footnoteTarget: App.footnoteTarget,
+          soundcloudBaseUrl: App.soundcloudBaseUrl,
+          soundcloudPermalink: LocationHash.permalink,
+          srtApiEndpoint: App.srtApiEndpoint,
+          srtUrl: responseSrtUrl
+        });
+      })
     })
   },
 
@@ -37,11 +48,22 @@ var LinkController = {
   },
 
   addStoryLinkListeners: function(){
+    var self = this
     $('.story').on('click', function(e){
       e.preventDefault()
       var i = e.target.dataset.id
-      var newStory = LinkController.storyData[i]
-      Player.reset(newStory);
+      var newStory = self.storyData[i]
+      Player.reset(newStory)
+      LocationHash.update(newStory.soundcloudPermalink)
+    })
+  },
+
+  findTranscript: function(permalink, callback){
+    var self = this
+    $.each(self.storyData, function(i,story){
+      if (story.soundcloudPermalink === permalink){
+        callback(story.srtUrl)
+      }
     })
   }
 }

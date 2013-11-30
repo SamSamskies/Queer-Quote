@@ -7,8 +7,8 @@ var Canvas = {
     this.lineHeight = 42;
     this.x = (this.can.width - this.maxWidth) / 2;
     this.y = (this.can.height /2);
-    this.setColors();
-    this.renderWatermark();
+    // this.setColors();
+    // this.renderWatermark();
     this.default_font = 38;
     this.ctx.font = "bold " + this.default_font +"pt Berkshire Swash";
   },
@@ -55,7 +55,7 @@ var Canvas = {
         line = words[i] + ' ';
         Canvas.updateLineHeight(1);
         Canvas.updateFontSize(2);
-        if ((y - Canvas.lineHeight/2) > 40) {
+        if ((y - Canvas.lineHeight/2) > (Canvas.can.height/10)) {
           y -= Canvas.lineHeight /2;
         } else {
           return y;
@@ -74,10 +74,11 @@ var Canvas = {
   updateFontSize: function(font_decrement) {
     Canvas.default_font -= font_decrement;
     Canvas.ctx.font = "bold " + this.default_font  +"pt Berkshire Swash";
-},
+  },
 
   renderText: function(quote) {
-
+    Canvas.setColors();
+    Canvas.renderWatermark();
     var words = this.createQuote(quote);
 
     var line = '';
@@ -98,6 +99,12 @@ var Canvas = {
     }
     this.ctx.fillText(line, this.x, y);
   },
+
+  // resizedRender: function(quote) {
+  //   Canvas.can.width = 1200;
+  //   Canvas.ctx.height = 650;
+  //   renderText(quote);
+  // },
 
   clear: function() {
     this.ctx.clearRect(0, 0, this.can.width, this.can.height);

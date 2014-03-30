@@ -16,7 +16,14 @@ var Player = {
   },
 
   setupPlayer: function(soundcloudUrl){
-    this.pop = Popcorn.soundcloud(this.containerTarget, soundcloudUrl);
+    // Recommended 'Wrapper' Method:
+    var wrapper = Popcorn.HTMLSoundCloudAudioElement(this.containerTarget)
+    wrapper.src = soundcloudUrl
+    this.pop = Popcorn(wrapper)
+
+    // // Deprecated 'Player' Method:
+    //this.pop = Popcorn.soundcloud(this.containerTarget, soundcloudUrl);
+    // // Error Message: Deprecated player 'soundcloud'. Please use Popcorn.HTMLSoundCloudAudioElement directly.
   },
 
   getTranscript: function(srtUrl){

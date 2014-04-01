@@ -100,12 +100,6 @@ var Canvas = {
     this.ctx.fillText(line, this.x, y);
   },
 
-  // resizedRender: function(quote) {
-  //   Canvas.can.width = 1200;
-  //   Canvas.ctx.height = 650;
-  //   renderText(quote);
-  // },
-
   clear: function() {
     this.ctx.clearRect(0, 0, this.can.width, this.can.height);
   }

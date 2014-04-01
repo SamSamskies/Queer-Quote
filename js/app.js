@@ -28,9 +28,9 @@ var App = {
       quote = $(".quote:visible");
       quote = (quote.length > 0) ? quote.html() : 'Play the podcast. :)';
 
-      Canvas.renderText(quote);
-      Player.pop.pause();
-    });
+    Canvas.renderText(quote);
+    Player.pop.pause();
+  });
 
     $(":input").change(function() {
       Canvas.init();
@@ -42,15 +42,13 @@ var App = {
 
     });
 
-    $('button#share').on('click', function share() {
-      Canvas.can.width = 1200;
-      Canvas.ctx.height = 650;
-      Canvas.renderText(quote);
+    $('button#share_fb').on('click', function share() {
+      var share_canvas = new Canvas(document.getElementById("share_canvas"), can.getContext("2d"), 1100, 70, (this.can.width - this.maxWidth / 2), (this.can.height / 2), 64, "bold " + this.default_font +"pt Berkshire Swash");
       var img;
       try {
-        img = Canvas.can.toDataURL('image/jpeg', 0.9).split(',')[1];
+        img = share_canvas.can.toDataURL('image/jpeg', 0.9).split(',')[1];
       } catch(e) {
-        img = Canvas.can.toDataURL().split(',')[1];
+        img = share_canvas.can.toDataURL().split(',')[1];
       }
       var w = window.open();
       w.document.write('Uploading... This may take a moment.');
@@ -68,27 +66,27 @@ var App = {
         },
         dataType: 'json'
       }).success(function(data) {
-        // w.close();
-        var imgurLink = data.data.link;
-        w.location = imgurLink;
-        // FB.ui({
-        //   method: 'feed',
-        //   picture: imgurLink,
-        //   name: "Queer Quote",
-        //   link: "http://samsamskies.github.io/Queer-Quote/",
-        //   caption: "Listen to ouLoud Radio at Queer Quote",
-        //   description: '"' + quote + '"'
-        // }, function(response){});
-      }).error(function() {
-        alert('Could not reach api.imgur.com. Sorry :(');
-          w.close();
-        });
-    }),
+          // w.close();
+          var imgurLink = data.data.link;
+          w.location = imgurLink;
+          // FB.ui({
+          //   method: 'feed',
+          //   picture: imgurLink,
+          //   name: "Queer Quote",
+          //   link: "http://samsamskies.github.io/Queer-Quote/",
+          //   caption: "Listen to ouLoud Radio at Queer Quote",
+          //   description: '"' + quote + '"'
+          // }, function(response){});
+    }).error(function() {
+      alert('Could not reach api.imgur.com. Sorry :(');
+        w.close();
+      });
+  }),
 
-    $('#share_modal').on('hidden.bs.modal', function () {
-      Canvas.clear();
-      Canvas.init();
-      Player.pop.play();
-    });
-  }
+$('#share_modal').on('hidden.bs.modal', function () {
+  Canvas.clear();
+  Canvas.init();
+  Player.pop.play();
+});
+}
 };

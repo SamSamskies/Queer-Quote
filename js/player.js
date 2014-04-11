@@ -16,7 +16,9 @@ var Player = {
   },
 
   setupPlayer: function(soundcloudUrl){
-    this.pop = Popcorn.soundcloud(this.containerTarget, soundcloudUrl);
+    var wrapper = Popcorn.HTMLSoundCloudAudioElement( "#video" )
+    wrapper.src = soundcloudUrl;
+    this.pop = Popcorn(wrapper);
   },
 
   getTranscript: function(srtUrl){

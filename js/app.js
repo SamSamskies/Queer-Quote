@@ -16,7 +16,7 @@ var App = {
   srtApiEndpoint: 'http://srt2json.herokuapp.com/?url=',
   outloudStoriesProxy: "http://srt2json.herokuapp.com/outloud-stories",
 
-  soundcloudContainerId: '#soundcloud',
+  soundcloudContainerId: '#video',
   footnoteTarget: '#footnote',
   storyLinksTarget: '.thumbnails',
 

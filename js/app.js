@@ -10,13 +10,13 @@ var App = {
 
   // Update these 2 urls to change what podcast gets loaded on the page
   soundcloudPermalink: 'a-trans-cendent-perspective',
-  //srtUrl: 'http://new.outloudradio.org/sites/default/files/transcripts/A_Trans-cendent_Perspective.en_.srt',
+  srtUrl: 'http://new.outloudradio.org/sites/default/files/transcripts/A_Trans-cendent_Perspective.en_.srt',
 
   soundcloudBaseUrl: 'http://soundcloud.com/outloud-radio-1/',
   srtApiEndpoint: 'http://srt2json.herokuapp.com/?url=',
   outloudStoriesProxy: "http://srt2json.herokuapp.com/outloud-stories",
 
-  soundcloudContainerId: '#soundcloud',
+  soundcloudContainerId: '#video',
   footnoteTarget: '#footnote',
   storyLinksTarget: '.thumbnails',
 
@@ -37,9 +37,15 @@ var App = {
       Canvas.renderText($(".quote:visible").html());
     });
 
-    $("#soundcloud").on('DOMSubtreeModified', function() {
+    $("#video").on('DOMNodeInserted', function() {
       $('.spinner').fadeOut();
-
+      setTimeout(function() {
+        source = $("iframe[id^='soundcloud']")[0].src;
+        $("iframe[id^='soundcloud']")[0].src = source.replace("&show_artwork=false","");
+        // console.log($("iframe")[0]["src"].toString());
+      }, 1);
+      $("iframe[id^='soundcloud']")[0].removeAttribute("style");
+      $("iframe[id^='soundcloud']")[0].width = "100%";
     });
 
     $('button#share_fb').on('click', function share() {

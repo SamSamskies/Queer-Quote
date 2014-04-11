@@ -37,9 +37,15 @@ var App = {
       Canvas.renderText($(".quote:visible").html());
     });
 
-    $("#soundcloud").on('DOMSubtreeModified', function() {
-      $('.spinner').fadeOut()
-
+    $("#video").on('DOMNodeInserted', function() {
+      $('.spinner').fadeOut();
+      setTimeout(function() {
+        source = $("iframe[id^='soundcloud']")[0].src;
+        $("iframe[id^='soundcloud']")[0].src = source.replace("&show_artwork=false","");
+        // console.log($("iframe")[0]["src"].toString());
+      }, 1);
+      $("iframe[id^='soundcloud']")[0].removeAttribute("style");
+      $("iframe[id^='soundcloud']")[0].width = "100%";
     });
 
     $('button#share').on('click', function() {

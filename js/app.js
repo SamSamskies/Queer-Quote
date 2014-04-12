@@ -42,7 +42,6 @@ var App = {
       setTimeout(function() {
         source = $("iframe[id^='soundcloud']")[0].src;
         $("iframe[id^='soundcloud']")[0].src = source.replace("&show_artwork=false","");
-        // console.log($("iframe")[0]["src"].toString());
       }, 1);
       $("iframe[id^='soundcloud']")[0].removeAttribute("style");
       $("iframe[id^='soundcloud']")[0].width = "100%";

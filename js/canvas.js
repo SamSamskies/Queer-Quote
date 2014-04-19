@@ -7,16 +7,28 @@ var Canvas = {
     this.lineHeight = 42;
     this.x = (this.can.width - this.maxWidth) / 2;
     this.y = (this.can.height /2);
-    // this.setColors();
-    // this.renderWatermark();
-    this.default_font = 38;
-    this.ctx.font = "bold " + this.default_font +"pt Berkshire Swash";
+    this.fontSize = 38;
+    this.fontName = this.setFont;
+  },
+
+  setFont: function() {
+    var getFontName = $("#font").val();
+    switch (getFontName)  {
+      case "berkshire":
+        $("head").append("<link href='http://fonts.googleapis.com/css?family=Berkshire+Swash' rel='stylesheet' type='text/css'>");
+        return "Berkshire Swash";
+        // break;
+      case "nova":
+        $("head").append("<link href='http://fonts.googleapis.com/css?family=Nova+Square' rel='stylesheet' type='text/css'>");
+        return "Nova Square";
+        // break;
+    }
   },
 
   renderWatermark: function() {
     this.ctx.font = '10pt Arial';
     this.ctx.fillText('outloudradio.org', 395, 390);
-    this.ctx.font = "bold " + this.default_font + "pt Berkshire Swash";
+    this.ctx.font = "bold " + this.fontSize + "pt " + this.fontName;
   },
 
   setColors: function() {
@@ -72,8 +84,8 @@ var Canvas = {
   },
 
   updateFontSize: function(font_decrement) {
-    Canvas.default_font -= font_decrement;
-    Canvas.ctx.font = "bold " + this.default_font  +"pt Berkshire Swash";
+    Canvas.fontSize -= font_decrement;
+    Canvas.ctx.font = "bold " + this.fontSize + "pt " + this.fontName;
   },
 
   renderText: function(quote) {

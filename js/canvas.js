@@ -15,7 +15,7 @@ var Canvas = {
 
   renderWatermark: function() {
     this.ctx.font = '10pt Arial';
-    this.ctx.fillText('outloudradio.org', 380, 390);
+    this.ctx.fillText('outloudradio.org', 395, 390);
     this.ctx.font = "bold " + this.default_font + "pt Berkshire Swash";
   },
 

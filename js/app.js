@@ -32,7 +32,7 @@ var App = {
     Player.pop.pause();
   });
 
-    $(":input").change(function() {
+    $("input, select").change(function() {
       Canvas.init();
       Canvas.renderText($(".quote:visible").html());
     });
@@ -74,17 +74,17 @@ var App = {
         },
         dataType: 'json'
       }).success(function(data) {
-          // w.close();
+          w.close();
           var imgurLink = data.data.link;
           w.location = imgurLink;
-          // FB.ui({
-          //   method: 'feed',
-          //   picture: imgurLink,
-          //   name: "Queer Quote",
-          //   link: "http://samsamskies.github.io/Queer-Quote/",
-          //   caption: "Listen to ouLoud Radio at Queer Quote",
-          //   description: '"' + quote + '"'
-          // }, function(response){});
+          FB.ui({
+            method: 'feed',
+            picture: imgurLink,
+            name: "Queer Quote Player",
+            link: "http://samsamskies.github.io/Queer-Quote/",
+            caption: "Listen to ouLoud Radio at Queer Quote",
+            description: '"' + quote + '"'
+          }, function(response){});
     }).error(function() {
       alert('Could not reach api.imgur.com. Sorry :(');
         w.close();

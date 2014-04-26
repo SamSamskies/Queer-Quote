@@ -14,7 +14,7 @@ var Canvas = {
   renderWatermark: function() {
     this.ctx.font = '10pt Arial';
     this.ctx.fillText('outloudradio.org', 395, 390);
-    this.ctx.font = "bold " + this.fontSize + "pt " + this.fontName;
+    this.ctx.font = this.fontSize + "pt " + this.fontName;
   },
 
   setColors: function() {
@@ -71,7 +71,7 @@ var Canvas = {
 
   updateFontSize: function(font_decrement) {
     Canvas.fontSize -= font_decrement;
-    Canvas.ctx.font = "bold " + this.fontSize + "pt " + this.fontName;
+    Canvas.ctx.font = this.fontSize + "pt " + this.fontName;
   },
 
   renderText: function(quote) {

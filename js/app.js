@@ -1,8 +1,9 @@
 $(document).ready(function() {
-  LocationHash.parse()
+  LocationHash.parse();
   LinkController.init(App.storyLinksTarget, App.outloudStoriesProxy);
-  Canvas.init()
+  Canvas.init();
   App.initListeners();
+  App.appendFonts();
 });
 
 
@@ -28,9 +29,9 @@ var App = {
       quote = $(".quote:visible");
       quote = (quote.length > 0) ? quote.html() : 'Play the podcast. :)';
 
-    Canvas.renderText(quote);
-    Player.pop.pause();
-  });
+      Canvas.renderText(quote);
+      Player.pop.pause();
+    });
 
     $("input, select").change(function() {
       Canvas.init();
@@ -85,16 +86,31 @@ var App = {
             caption: "Listen to ouLoud Radio at Queer Quote",
             description: '"' + quote + '"'
           }, function(response){});
-    }).error(function() {
-      alert('Could not reach api.imgur.com. Sorry :(');
+      }).error(function() {
+        alert('Could not reach api.imgur.com. Sorry :(');
         w.close();
       });
-  }),
+    }),
 
-$('#share_modal').on('hidden.bs.modal', function () {
-  Canvas.clear();
-  Canvas.init();
-  Player.pop.play();
-});
-}
+    $('#share_modal').on('hidden.bs.modal', function () {
+      Canvas.clear();
+      Canvas.init();
+      Player.pop.play();
+    });
+  },
+
+  appendFonts: function() {
+    WebFontConfig = {
+    google: { families: [ 'Oleo+Script::latin', 'Special+Elite::latin', 'Alegreya:700:latin', 'Coming+Soon::latin', 'Indie+Flower::latin', 'Berkshire+Swash::latin', 'Nova+Square::latin' ] }
+    };
+    (function() {
+      var wf = document.createElement('script');
+      wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+        '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+      wf.type = 'text/javascript';
+      wf.async = 'true';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(wf, s);
+    })();
+  }
 };

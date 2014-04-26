@@ -8,19 +8,7 @@ var Canvas = {
     this.x = (this.can.width - this.maxWidth) / 2;
     this.y = (this.can.height /2);
     this.fontSize = 38;
-    this.fontName = this.setFont();
-  },
-
-  setFont: function() {
-    var getFontName = $("select").val();
-    switch (getFontName)  {
-      case "berkshire":
-        $("head").append("<link href='http://fonts.googleapis.com/css?family=Berkshire+Swash' rel='stylesheet' type='text/css'>");
-        return "Berkshire Swash";
-      case "nova":
-        $("head").append("<link href='http://fonts.googleapis.com/css?family=Nova+Square' rel='stylesheet' type='text/css'>");
-        return "Nova Square";
-    }
+    this.fontName = $("select").val();
   },
 
   renderWatermark: function() {

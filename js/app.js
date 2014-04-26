@@ -43,7 +43,6 @@ var App = {
       setTimeout(function() {
         source = $("iframe[id^='soundcloud']")[0].src;
         $("iframe[id^='soundcloud']")[0].src = source.replace("&show_artwork=false","");
-        // console.log($("iframe")[0]["src"].toString());
       }, 1);
       $("iframe[id^='soundcloud']")[0].removeAttribute("style");
       $("iframe[id^='soundcloud']")[0].width = "100%";
@@ -78,14 +77,29 @@ var App = {
           w.close();
           var imgurLink = data.data.link;
           w.location = imgurLink;
-          FB.ui({
-            method: 'feed',
-            picture: imgurLink,
-            name: "Queer Quote Player",
-            link: "http://samsamskies.github.io/Queer-Quote/",
-            caption: "Listen to ouLoud Radio at Queer Quote",
-            description: '"' + quote + '"'
-          }, function(response){});
+          FB.api(
+            "/me/photos",
+            "POST",
+            {
+              "object": {
+                "url": imgurLink,
+                "message": "www.queerquote.com"
+              }
+            },
+            function (response) {
+              if (response && !response.error) {
+                alert("Error!");
+              }
+            }
+          );
+          // FB.ui({
+          //   method: 'feed',
+          //   picture: imgurLink,
+          //   name: "Queer Quote Player",
+          //   link: "http://www.queerquote.com",
+          //   caption: "Listen to ouLoud Radio at Queer Quote",
+          //   description: '"' + quote + '"'
+          // }, function(response){});
       }).error(function() {
         alert('Could not reach api.imgur.com. Sorry :(');
         w.close();

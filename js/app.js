@@ -54,7 +54,7 @@ var App = {
         // new Canvas(document.getElementById("share_canvas"), can.getContext("2d"), 1100, 70, (this.can.width - this.maxWidth / 2), (this.can.height / 2), 64, "bold " + this.default_font +"pt Berkshire Swash");
       var img;
       try {
-        img = share_canvas.can.toDataURL('image/jpeg', 0.9).split(',')[1];
+        img = share_canvas.can.toDataURL('image/jpeg').split(',')[1];
       } catch(e) {
         img = share_canvas.can.toDataURL().split(',')[1];
       }

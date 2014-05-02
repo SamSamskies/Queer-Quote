@@ -4,19 +4,17 @@ var Canvas = {
     this.can = document.getElementById("can");
     this.ctx = this.can.getContext("2d");
     this.maxWidth = 460;
-    this.lineHeight = 42;
+    this.lineHeight = 46;
     this.x = (this.can.width - this.maxWidth) / 2;
     this.y = (this.can.height /2);
-    this.setColors();
-    this.renderWatermark();
-    this.default_font = 38;
-    this.ctx.font = "bold " + this.default_font +"pt Berkshire Swash";
+    this.fontSize = 38;
+    this.fontName = $("select").val();
   },
 
   renderWatermark: function() {
     this.ctx.font = '10pt Arial';
-    this.ctx.fillText('outloudradio.org', 380, 390);
-    this.ctx.font = "bold " + this.default_font + "pt Berkshire Swash";
+    this.ctx.fillText('outloudradio.org', 395, 390);
+    this.ctx.font = this.fontSize + "pt " + this.fontName;
   },
 
   setColors: function() {
@@ -29,6 +27,7 @@ var Canvas = {
     words = quote.split(' ');
     var first_word = words[0];
     first_word = first_word.split('');
+    // Removes the name from the quote if a name is present
     if (first_word[first_word.length - 1] == ':') {
       words = words.slice(1, words.length);
       words[0] = '"' + words[0];
@@ -53,9 +52,9 @@ var Canvas = {
       var testWidth = metrics.width;
       if (testWidth > this.maxWidth && i > 0) {
         line = words[i] + ' ';
-        Canvas.updateLineHeight(1);
+        Canvas.updateLineHeight(1.5);
         Canvas.updateFontSize(2);
-        if ((y - Canvas.lineHeight/2) > 40) {
+        if ((y - Canvas.lineHeight/2) > (Canvas.can.height/10)) {
           y -= Canvas.lineHeight /2;
         } else {
           return y;
@@ -72,12 +71,13 @@ var Canvas = {
   },
 
   updateFontSize: function(font_decrement) {
-    Canvas.default_font -= font_decrement;
-    Canvas.ctx.font = "bold " + this.default_font  +"pt Berkshire Swash";
-},
+    Canvas.fontSize -= font_decrement;
+    Canvas.ctx.font = this.fontSize + "pt " + this.fontName;
+  },
 
   renderText: function(quote) {
-
+    Canvas.setColors();
+    Canvas.renderWatermark();
     var words = this.createQuote(quote);
 
     var line = '';

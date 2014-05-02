@@ -1,8 +1,9 @@
 $(document).ready(function() {
-  LocationHash.parse()
+  LocationHash.parse();
   LinkController.init(App.storyLinksTarget, App.outloudStoriesProxy);
-  Canvas.init()
+  Canvas.init();
   App.initListeners();
+  App.appendFonts();
 });
 
 
@@ -10,7 +11,7 @@ var App = {
 
   // Update these 2 urls to change what podcast gets loaded on the page
   soundcloudPermalink: 'a-trans-cendent-perspective',
-  //srtUrl: 'http://new.outloudradio.org/sites/default/files/transcripts/A_Trans-cendent_Perspective.en_.srt',
+  srtUrl: 'http://new.outloudradio.org/sites/default/files/transcripts/A_Trans-cendent_Perspective.en_.srt',
 
   soundcloudBaseUrl: 'http://soundcloud.com/outloud-radio-1/',
   srtApiEndpoint: 'http://srt2json.herokuapp.com/?url=',
@@ -25,14 +26,14 @@ var App = {
     $("#share_button").click(function(e) {
       e.preventDefault();
 
-      quote = $(".quote:visible")
-      quote = (quote.length > 0) ? quote.html() : 'Play the podcast. :)'
+      quote = $(".quote:visible");
+      quote = (quote.length > 0) ? quote.html() : 'Play the podcast. :)';
 
       Canvas.renderText(quote);
-      Player.pop.pause()
+      Player.pop.pause();
     });
 
-    $(":input").change(function() {
+    $("input, select").change(function() {
       Canvas.init();
       Canvas.renderText($(".quote:visible").html());
     });
@@ -47,15 +48,99 @@ var App = {
       $("iframe[id^='soundcloud']")[0].width = "100%";
     });
 
-    $('button#share').on('click', function() {
-      Canvas2Image.saveAsPNG($("#can")[0]);
-    })
+    $('button#share_fb').on('click', function share() {
+      var share_canvas =
+        Canvas;
+        // new Canvas(document.getElementById("share_canvas"), can.getContext("2d"), 1100, 70, (this.can.width - this.maxWidth / 2), (this.can.height / 2), 64, "bold " + this.default_font +"pt Berkshire Swash");
+      var img;
+      try {
+        img = share_canvas.can.toDataURL('image/jpeg').split(',')[1];
+      } catch(e) {
+        img = share_canvas.can.toDataURL().split(',')[1];
+      }
+      var w = window.open();
+      w.document.write('Uploading... This may take a moment.');
+      $.ajax({
+        url: 'https://api.imgur.com/3/image',
+        headers: {
+          'Authorization': 'Client-ID 05de8015cc777bc'
+        },
+        type: 'POST',
+        data: {
+          type: 'base64',
+          title: 'test title',
+          caption: 'Canvas.quote',
+          image: img
+        },
+        dataType: 'json'
+      }).success(function(data) {
+          // w.close();
+          var imgurLink = data.data.link;
+          w.location = imgurLink;
+
+          // Check if the current user is logged in and has authorized the app
+          FB.getLoginStatus(checkLoginStatus);
+
+          // Login in the current user via Facebook and ask for email permission
+          function authUser() {
+            FB.login(checkLoginStatus, {scope:'publish_actions'});
+          }
+          function checkLoginStatus(response) {
+            if(response && response.status == 'connected') {
+              var accessToken = response.authResponse.accessToken;
+              FB.api(
+                "/me/photos",
+                "POST",
+                {
+                  url: imgurLink,
+                  message: "Check out the QueerQuote player for outLoud Radio at www.queerquote.com"
+                },
+                function(response) {
+                  if (response && !response.error) {
+                    alert("Successfully posted to Facebook");
+                  } else {
+                    alert("Error posting to Facebook");
+                  }
+                }
+              );
+            } else {
+              authUser();
+            }
+          }
+          // //This is the dialog box way to post the image link to Fb
+          // FB.ui({
+          //   method: 'feed',
+          //   picture: imgurLink,
+          //   name: "Queer Quote Player",
+          //   link: "http://www.queerquote.com",
+          //   caption: "Listen to ouLoud Radio at Queer Quote",
+          //   description: '"' + quote + '"'
+          // }, function(response){});
+      }).error(function() {
+        alert('Could not reach api.imgur.com. Sorry :(');
+        w.close();
+      });
+    });
 
     $('#share_modal').on('hidden.bs.modal', function () {
-      Canvas.clear()
-      Canvas.init()
-      Player.pop.play()
-    })
+      Canvas.clear();
+      Canvas.init();
+      Player.pop.play();
+    });
+  },
 
+  appendFonts: function() {
+    WebFontConfig = {
+    google: { families: [ 'Oleo+Script::latin', 'Special+Elite::latin', 'Alegreya:700:latin', 'Coming+Soon::latin', 'Indie+Flower::latin', 'Berkshire+Swash::latin', 'Nova+Square::latin' ] }
+    };
+    (function() {
+      var wf = document.createElement('script');
+      wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+        '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+      wf.type = 'text/javascript';
+      wf.async = 'true';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(wf, s);
+    })();
   }
 };

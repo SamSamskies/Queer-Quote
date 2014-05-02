@@ -4,7 +4,6 @@
   <head>
     <meta charset="utf-8" />
 
-    <link href='http://fonts.googleapis.com/css?family=Berkshire+Swash' rel='stylesheet' type='text/css'>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="styles/app.css">
@@ -48,14 +47,25 @@
                     <label for="bgColor">Background</label>
                     <input type="text" class="color" name="bgColor" id="bgColor" value="bada55" size="6" maxlength="6">
                     <label for="fgColor">Text Color</label>
-                    <input type="text" class="color" name="fgColor" id="fgColor" value="000" size="6" maxlength="6">
+                    <input type="text" class="color" name="fgColor" id="fgColor" value="000" size="6" maxlength="6"><br>
+                    <label for="font">Font</label>
+                    <select name="font">
+                      <option value="Berkshire Swash" style="font-family:'Berkshire Swash'">Berkshire Swash</option>
+                      <option value="Nova Square">Nova Square</option>
+                      <option value="Oleo Script">Oleo Script</option>
+                      <option value="Special Elite">Special Elite</option>
+                      <option value="Alegreya">Alegreya</option>
+                      <option value="Coming Soon">Coming Soon</option>
+                      <option value="Indie Flower">Indie Flower</option>
+                    </select>
+
 
                   </div>
 
                 </form>
                 </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="share">Save image</button>
+                <button type="button" class="btn btn-primary" id="share_fb">Save image</button>
                 </div>
               </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
@@ -92,6 +102,8 @@
     <!-- End of container -->
     </div>
 
+    <canvas id="share_canvas" style="display:none;" width="1200" height="650"></canvas>
+
     <!-- Latest compiled and minified JavaScript -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
@@ -106,7 +118,28 @@
     <script type="text/javascript" src="jscolor/jscolor.js"></script>
     <script type="text/javascript" src="http://www.nihilogic.dk/labs/canvas2image/canvas2image.js"></script>
     <script type="text/javascript" src="http://www.nihilogic.dk/labs/canvas2image/base64.js" ></script>
+    <div id="fb-root"></div>
+    <script>
+      window.fbAsyncInit = function() {
+        // init the FB JS SDK
+        FB.init({
+          appId      : '631222946921212',        // App ID from the app dashboard
+          status     : true,                                 // Check Facebook Login status
+          cookie     : true, // enable cookies to allow the server to access the session
+          xfbml      : true                                  // Look for social plugins on the page
+        });
+      };
 
+    // Load the SDK asynchronously
+      (function(d){
+        var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement('script'); js.id = id; js.async = true;
+        js.src = "//connect.facebook.net/en_US/all.js";
+        ref.parentNode.insertBefore(js, ref);
+        }(document));
+    </script>
+    <fb:login-button scope="publish_actions" show-faces="true" width="200" max-rows="1"></fb:login-button>
   </body>
 
 </html>

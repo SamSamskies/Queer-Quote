@@ -88,27 +88,22 @@ var App = {
           function checkLoginStatus(response) {
             if(response && response.status == 'connected') {
               var accessToken = response.authResponse.accessToken;
-              alert('User is authorized');
-              console.log('Access Token: ' + response.authResponse.accessToken);
               FB.api(
                 "/me/photos",
                 "POST",
                 {
-                    url: imgurLink,
-                    message: "Check out the QueerQuote player for outLoud Radio at www.queerquote.com"
+                  url: imgurLink,
+                  message: "Check out the QueerQuote player for outLoud Radio at www.queerquote.com"
                 },
                 function(response) {
                   if (response && !response.error) {
                     alert("Successfully posted to Facebook");
-                    console.log(response);
                   } else {
                     alert("Error posting to Facebook");
-                    console.log(response);
                   }
                 }
               );
             } else {
-              alert('User is not authorized');
               authUser();
             }
           }

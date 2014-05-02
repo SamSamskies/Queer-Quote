@@ -74,24 +74,45 @@ var App = {
         },
         dataType: 'json'
       }).success(function(data) {
-          w.close();
+          // w.close();
           var imgurLink = data.data.link;
           w.location = imgurLink;
-          FB.api(
-            "/me/photos",
-            "POST",
-            {
-              "object": {
-                "url": imgurLink,
-                "message": "www.queerquote.com"
-              }
-            },
-            function (response) {
-              if (response && !response.error) {
-                alert("Error!");
-              }
+
+          // Check if the current user is logged in and has authorized the app
+          FB.getLoginStatus(checkLoginStatus);
+
+          // Login in the current user via Facebook and ask for email permission
+          function authUser() {
+            FB.login(checkLoginStatus, {scope:'publish_actions'});
+          }
+          function checkLoginStatus(response) {
+            if(response && response.status == 'connected') {
+              var accessToken = response.authResponse.accessToken;
+              alert('User is authorized');
+              console.log('Access Token: ' + response.authResponse.accessToken);
+              FB.api(
+                "/me/photos",
+                "POST",
+                {
+                    url: imgurLink,
+                    message: "Check out the QueerQuote player for outLoud Radio at www.queerquote.com"
+                },
+                function(response) {
+                  if (response && !response.error) {
+                    alert("Successfully posted to Facebook");
+                    console.log(response);
+                  } else {
+                    alert("Error posting to Facebook");
+                    console.log(response);
+                  }
+                }
+              );
+            } else {
+              alert('User is not authorized');
+              authUser();
             }
-          );
+          }
+          // //This is the dialog box way to post the image link to Fb
           // FB.ui({
           //   method: 'feed',
           //   picture: imgurLink,
@@ -104,7 +125,7 @@ var App = {
         alert('Could not reach api.imgur.com. Sorry :(');
         w.close();
       });
-    }),
+    });
 
     $('#share_modal').on('hidden.bs.modal', function () {
       Canvas.clear();

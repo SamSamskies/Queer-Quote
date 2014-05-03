@@ -87,7 +87,6 @@ var App = {
           }
           function checkLoginStatus(response) {
             if(response && response.status == 'connected') {
-              var accessToken = response.authResponse.accessToken;
               FB.api(
                 "/me/photos",
                 "POST",

@@ -76,7 +76,7 @@ var App = {
       }).success(function(data) {
           // w.close();
           var imgurLink = data.data.link;
-          w.location = imgurLink.replace(".jpg", "");
+          w.location = imgurLink.replace(".png", "");
 
           // Check if the current user is logged in and has authorized the app
           FB.getLoginStatus(checkLoginStatus);

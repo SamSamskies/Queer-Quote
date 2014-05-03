@@ -87,34 +87,11 @@ var App = {
           }
           function checkLoginStatus(response) {
             if(response && response.status == 'connected') {
-              FB.api(
-                "/me/photos",
-                "POST",
-                {
-                  url: imgurLink,
-                  message: "Check out the QueerQuote player for outLoud Radio at www.queerquote.com"
-                },
-                function(response) {
-                  if (response && !response.error) {
-                    alert("Successfully posted to Facebook");
-                  } else {
-                    alert("Error posting to Facebook");
-                  }
-                }
-              );
+              App.postToFacebook(imgurLink);
             } else {
               authUser();
             }
           }
-          // //This is the dialog box way to post the image link to Fb
-          // FB.ui({
-          //   method: 'feed',
-          //   picture: imgurLink,
-          //   name: "Queer Quote Player",
-          //   link: "http://www.queerquote.com",
-          //   caption: "Listen to ouLoud Radio at Queer Quote",
-          //   description: '"' + quote + '"'
-          // }, function(response){});
       }).error(function() {
         alert('Could not reach api.imgur.com. Sorry :(');
         w.close();
@@ -126,6 +103,33 @@ var App = {
       Canvas.init();
       Player.pop.play();
     });
+  },
+
+  postToFacebook: function(imgurLink) {
+    FB.api(
+      "/me/photos",
+      "POST",
+      {
+        url: imgurLink,
+        message: "Check out the QueerQuote player for outLoud Radio at www.queerquote.com"
+      },
+      function(response) {
+        if (response && !response.error) {
+          alert("Successfully posted to Facebook");
+        } else {
+          alert("Error posting to Facebook");
+        }
+      }
+    );
+    // // This is the dialog box way to post the image link to Fb
+    // FB.ui({
+    //   method: 'feed',
+    //   picture: imgurLink,
+    //   name: "Queer Quote Player",
+    //   link: "http://www.queerquote.com",
+    //   caption: "Listen to ouLoud Radio at Queer Quote",
+    //   description: '"' + quote + '"'
+    // }, function(response){});
   },
 
   appendFonts: function() {

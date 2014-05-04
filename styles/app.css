@@ -88,4 +88,10 @@ body {
 }
 
 /* Modals */
-
+.modal-body {
+	padding: 20px 0 0 0;
+}
+.modal-footer {
+	margin-top: 0;
+	font-size: 20px;
+}

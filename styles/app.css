@@ -3,7 +3,7 @@ body {
 }
 
 .spinner {
-  margin-left: 175px;
+	margin-left: 175px;
 }
 
 .container {
@@ -14,10 +14,6 @@ body {
 
 .header h3 {
 	font-size: 1.3em;
-}
-
-.footer p {
-  text-align: center;
 }
 
 #outloud_logo {
@@ -39,46 +35,45 @@ body {
 	width: 100%;
 }
 
-	/* Soundcloud */
+/* Soundcloud */
 
-	#soundcloud {
-		margin: 0 auto;
-		margin-bottom: 10px;
-		height: 100px;
-	}
+#soundcloud {
+	margin: 0 auto;
+	margin-bottom: 10px;
+	height: 100px;
+}
 
-	/* Quote */
+/* Quote */
 
-	#footnote {
-		width: 100%;
-		min-height: 60px;
-		margin: 0 auto;
-/*		background: #888;
-*/		font-size: 1.2em;
-		line-height: 1.1em;
-		text-align: center;
-		margin-bottom: 8px;
-	}
+#footnote {
+	width: 100%;
+	min-height: 60px;
+	margin: 0 auto;
+	font-size: 1.2em;
+	line-height: 1.1em;
+	text-align: center;
+	margin-bottom: 8px;
+}
 
-	/* Buttons, Links, Settings, Share*/
+/* Buttons, Links, Settings, Share*/
 
-	#button_wrapper {
-		overflow: auto;
-	}
+#button_wrapper {
+	overflow: auto;
+}
 
-	#share_button {
-		float: right;
-	}
+#share_button {
+	float: right;
+}
 
-	/* Thumbnails */
-	.story {
-		padding: 4px 4px 4px 4px;
-	}
+/* Thumbnails */
+.story {
+	padding: 4px 4px 4px 4px;
+}
 
 /* Footer */
 .footer {
-  padding-top: 20px;
-  color: #777;
+	padding-top: 20px;
+	color: #777;
 }
 
 /* Modals */

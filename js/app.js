@@ -100,7 +100,7 @@ var App = {
       Player.pop.play();
     });
   },
-
+  // This uploads the Imgur image to Facebook via the link url
   postToFacebook: function(imgurLink) {
     FB.api(
       "/me/photos",
@@ -117,16 +117,19 @@ var App = {
         }
       }
     );
-    // // This is the dialog box way to post the image link to Fb
-    // FB.ui({
-    //   method: 'feed',
-    //   picture: imgurLink,
-    //   name: "Queer Quote Player",
-    //   link: "http://www.queerquote.com",
-    //   caption: "Listen to ouLoud Radio at Queer Quote",
-    //   description: '"' + quote + '"'
-    // }, function(response){});
   },
+
+  // This is the dialog box way to post the image link to Fb (not in use)
+  postImgurLink: function(imgurLink) {
+  FB.ui({
+    method: 'feed',
+    picture: imgurLink,
+    name: "Queer Quote Player",
+    link: "http://www.queerquote.com",
+    caption: "Listen to ouLoud Radio at Queer Quote",
+    description: '"' + quote + '"'
+  }, function(response){});
+},
 
   appendFonts: function() {
     WebFontConfig = {

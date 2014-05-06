@@ -6,7 +6,6 @@ $(document).ready(function() {
   App.appendFonts();
 });
 
-
 var App = {
 
   // Update these 2 urls to change what podcast gets loaded on the page

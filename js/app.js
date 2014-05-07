@@ -100,12 +100,12 @@ var App = {
     });
   },
   // This uploads the Imgur image to Facebook via the link url
-  postToFacebook: function(imgurLink) {
+  postToFacebook: function(imageLink) {
     FB.api(
       "/me/photos",
       "POST",
       {
-        url: imgurLink,
+        url: imageLink,
         message: "Check out the QueerQuote player for outLoud Radio at www.queerquote.com"
       },
       function(response) {
